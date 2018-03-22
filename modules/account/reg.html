@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>速运侠</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link href="../../public/css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<link rel="stylesheet" href="../../public/css/user-form.css" />
+		<style>
+			.mui-slider{
+				height: 120px; 
+				/*margin-top: 5px;*/
+			}
+			.mui-slider-indicator{
+				background: #000000; text-align: right; padding-right: 5px; opacity: 0.80; bottom:0;
+			}
+			.mui-slider-indicator .mui-indicator{background:white;}
+			.mui-slider-indicator .mui-active.mui-indicator{background:#ffda44;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav mui-bar-header">
+			<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></span>
+			<h1 class="mui-title">货主注册</h1>
+		</header>
+		<div class="mui-content mui-fullscreen">
+			<div class="mui-slider">
+			  	<div class="mui-slider-group mui-slider-loop">
+				    <!--支持循环，需要重复图片节点-->
+				    <div class="mui-slider-item mui-slider-item-duplicate">
+				    	<img src="../../public/images/banner.jpg" />
+				   	</div>
+				    <div class="mui-slider-item">
+				    	<img src="../../public/images/banner.jpg" />
+				    </div>
+				    <div class="mui-slider-item">
+				    	<img src="../../public/images/banner.jpg" />
+				    </div>
+				    <div class="mui-slider-item">
+				    	<img src="../../public/images/banner.jpg" />
+				    </div>
+				    <div class="mui-slider-item">
+				    	<img src="../../public/images/banner.jpg" />
+				    </div>
+				    <!--支持循环，需要重复图片节点-->
+				    <div class="mui-slider-item mui-slider-item-duplicate">
+				    	<img src="../../public/images/banner.jpg" />
+				   	</div>
+			  	</div>
+				  	<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<div class="form-box">
+				<div>
+					<span><img src="../../public/images/icon-man.png" /></span>
+					<input type="text" name="nickName" maxlength="8" placeholder="请输入昵称（不超过8个字符）" />
+				</div>
+				<div>
+					<span><img src="../../public/images/icon-account.png" /></span><input type="tel" 
+						value="" id="userNo" name="userNo" maxlength="11" placeholder="输入手机号码" />
+				</div>
+				<div style="padding: 0;">
+					<button style="width: 120px;" id="btnGetVCode" type="button" class="main-bg-color">获取验证码</button>
+					<div>
+						<span><img src="../../public/images/reg_message_img.png" /></span><input type="text" 
+							name="vCode" maxlength="5" placeholder="请输入验证码" />
+					</div>
+				</div>
+				<div>
+					<span>
+						<img src="../../public/images/icon-password.png" />
+					</span>
+					<input type="password" name="userPwd" maxlength="30" placeholder="输入登录密码" />
+				</div>
+				<div>
+					<span>
+						<img src="../../public/images/icon-password.png" />
+					</span>
+					<input type="password" name="userPwd2" maxlength="30" placeholder="请再次输入登录密码" />
+				</div>
+				<div style="background: white; margin-top: 10px;">
+					<button id="btnReg" class="main-bg-color">加入速运侠</button>
+					<div style="margin: 5px; font-size: 14px;">
+						<span style="height:auto; border: 0; float: right;">
+							<a href="javascript:void(0);"> 服务条款</a>
+						</span>
+						<label style="color:#007aff;">
+							<input type="checkbox" style="vertical-align: middle; display: inline; margin-right: 3px;" />我同意速运侠服务条款
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../public/js/mui.min.js"></script>
+	<script type="text/javascript" src="../../public/js/cache.js" ></script>
+	<script>window.checkSession = false;</script>
+	<script type="text/javascript" src="../../public/js/common.js" ></script>
+	<script>
+		mui.ready(function(){
+			mui('.mui-slider').slider({
+				interval: 3000
+			});
+			btnGetVCode.addEventListener('tap', function(){
+				/*var txtArr = document.getElementsByName("vCode");
+				txtArr[0].value = parseInt(Math.random() * 100000+100000);*/
+				
+				//2017-8-21 17:36添加
+				mobile = document.getElementById('userNo').value;
+				Request.ajax({
+				url:'/open/checkPhone.do',"data":{
+					mobile:mobile,
+					type:3
+				},
+				attr:(Request.ATTR_LOAD_MODEL|Request.ATTR_LOAD_FORCE),
+				callback:function(rs){
+					if(rs.success) {
+						sendSMS();
+						//mui.toast("获取验证码成功");
+					}
+				}
+			});
+				
+				
+			});
+		var count = 59; //倒计时总时间
+		function sendSMS() {
+			var mobile = document.getElementById("userNo").value;
+			var textEle = document.getElementById("btnGetVCode");
+			if(mobile==''){
+				mui.toast("请先输入手机号");
+				return;
+			}
+			var InterValObj;
+			var curCount = 0;
+			curCount = count;
+			Request.ajax({
+				url:'/open/sendSmscode.do',"data":{mobile:mobile},
+				attr:(Request.ATTR_LOAD_MODEL|Request.ATTR_LOAD_FORCE),
+				callback:function(rs){
+					if(rs.success) {
+						InterValObj = setInterval(setRemainTime, 1000);
+						textEle.disabled=true;
+						textEle.innerHTML=curCount + "秒后重新发送";
+						//mui.toast("获取验证码成功");
+					}else{
+						mui.toast("获取验证码失败");
+					}
+				}
+			});
+
+			function setRemainTime() {
+				if (curCount == 1) {
+					window.clearInterval(InterValObj);
+					textEle.innerHTML="获取验证码";
+					textEle.style.color="#666";
+					textEle.disabled=false;
+				}
+				else {
+					curCount--;
+					textEle.innerHTML=curCount + "秒后重新发送";
+				}
+			}
+		}
+			
+			btnReg.addEventListener('tap', function(){
+				
+				var params = {regType:3}, hasError = false;
+				var txtArr = document.querySelectorAll(".form-box input");
+				mui.each(txtArr, function(){
+					if(this.type == 'checkbox'){
+						if(this.checked) return true;
+						mui.toast("请阅读协议并同意"); 
+						hasError = true; 
+						return false;
+					}
+					if(this.name && this.value){
+						params[this.name] = this.value;
+					}else{
+						hasError = true; 
+						mui.toast(this.placeholder); 
+						return false;
+					}
+				});
+				if(hasError) return;
+				if(params.userPwd != params.userPwd2) {
+					mui.toast('两次输入的密码不一致，请重新输入');	
+					return false;
+				}
+//				console.log(JSON.stringify(params));
+				Request.ajax({
+					url:'/open/register.do',"data":params,
+					attr:(Request.ATTR_LOAD_MODEL|Request.ATTR_LOAD_FORCE),
+					callback:function(rs){
+						if(rs.success) {
+							mui.toast("注册成功");	
+							mui.back()
+						}else{
+							mui.toast(rs.message);
+						};
+					}
+				});
+			});
+		});
+	</script>
+</html>

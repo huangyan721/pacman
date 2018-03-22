@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>取消订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+ 
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js"></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+
+		<link rel="stylesheet" href="../../public/css/imageview.css" />
+		<script src="../../public/js/mui.zoom.js"></script>
+		<script src="../../public/js/mui.previewimage.js"></script>
+
+		<style>
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 0;
+			}
+			
+			.mui-content>.mui-card:first-child {
+				margin-top: 0;
+			}
+			
+			.card-title {
+				padding-bottom: 8px;
+				font-size: 15px;
+			}
+			
+			.header {
+				width: 100%;
+				height: 150px;
+				margin: 0;
+				border-radius: 0;
+				text-align: center;
+				box-shadow: 0px 2px 2px #BBBBBB;
+			}
+			
+			.mui-scroll-wrapper {
+				top: 195px;
+				bottom: 0;
+			}
+			
+			img {
+				width: 60px;
+				height: 48px;
+			}
+			
+			.mui-card .time {
+				padding-right: 4px;
+			}
+			
+			.mui-card .order-type {
+				font-size: 12px;
+			}
+			
+			.mui-card .order-status {
+				height: 40px;
+			}
+			
+			.header-title {
+				height: 40px;
+				line-height: 40px;
+			}
+			
+			.header-content {
+				height: 70px;
+			}
+			
+			.header-footer {
+				height: 40px;
+				font-size: 0px;
+			}
+			
+			.header-footer span {
+				display: inline-block;
+				width: 33.3%;
+				font-size: 14px;
+			}
+			
+			#order-status-1 {
+				display: none;
+			}
+			
+			#order-status-other {
+				display: block;
+			}
+			
+			#order-status-6 {
+				display: none;
+			}
+			
+			.order-status-1 #order-status-1 {
+				display: block;
+			}
+			
+			.order-status-1 #order-status-other,
+			.order-status-6 #order-status-other {
+				display: none;
+			}
+			
+			.order-status-1 .contact {
+				color: #B2B2B2;
+			}
+			
+			.HeadTimeFont {
+				font-size: 11px;
+			}
+			
+			.Padding3Percent {
+				padding: 2%;
+			}
+			
+			span.packaged {
+				color: #B2B2B2;
+			}
+			
+			span.evaluate {
+				display: none;
+			}
+			
+			span.share {
+				display: none;
+			}
+			
+			.order-status-9 span.packaged,
+			.order-status-4 span.packaged {
+				color: #333333;
+			}
+			
+			.order-status-5 span.evaluate {
+				display: inline-block;
+			}
+			
+			.order-status-5 span.position {
+				display: none;
+			}
+			
+			.order-status-5 span.packaged {
+				display: none;
+			}
+			
+			.order-status-5 span.share {
+				display: inline-block;
+			}
+			
+			#divCoveringLayer {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				opacity: 0.35;
+				z-index: 990;
+				display: none;
+			}
+			
+			#track-0 img {
+				display: none;
+			}
+			
+			#track-0 span {
+				color: gray
+			}
+			
+			#track-1 img {
+				display: none;
+			}
+			
+			#track-1 span {
+				color: gray
+			}
+			
+			#track-2 img {
+				display: none;
+			}
+			
+			#track-2 span {
+				color: gray
+			}
+			
+			.chooseNameColor {
+				color: white;
+				background-image: url(../../public/images/Detail-TimeIcon.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+			}
+			
+			.chooseTimeColor {
+				color: #333333;
+			}
+			
+			.unchooseColor {
+				color: #999999;
+			}
+			
+			.YCenter {
+				display: flex;
+				align-items: center;
+			}
+			.font-position{
+				position: relative;
+				top: -3px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">4S专运</h1>
+			<span id="cancel" class="mui-pull-right" style="font-size: 14px; line-height: 44px; display: none;">取消订单</span>
+			<span id="btnSpanEvaluate" class="mui-pull-right" style="font-size: 14px; line-height: 44px; display: none;">评价司机</span>
+			<span id="packaged" class="mui-pull-right" style="font-size: 14px; line-height: 44px; display: none;">确认收货</span>
+		</header>
+		<div id="progress" class="mui-content mui-fullscreen" style="text-align: center; padding-top: 64px;">
+			<a>
+				<span class="mui-spinner"></span>
+			</a>
+		</div>
+		<div id="content" class="mui-content" style="display: none;">
+			<div id="header" class="mui-card header" style="padding-left: 3%;padding-right: 3%;">
+				<div class="card-title border-bottom chooseTimeColor" style="text-align: left;padding-top: 2%;">订单号：<span name="orderNo"></span></div>
+				<div id="cancel-div" style="display:none;padding-top: 20px;">
+					<label style="color: red;">订单已取消</label>
+					<br /><br />
+					<label>取消原因：</label><span name="cancelReason"></span>
+				</div>
+				<div id="finish-div" style="display:none;padding-top: 20px;margin-top: 20px;">
+					<label style="color: red;">订单已完成</label>
+				</div>
+				<div id="order-status-1" class="order-status" style="padding-top: 20px;display: none;">
+					<span>发单成功</span>
+					<br />
+					<span class="color-href" style="display: inline-block;margin-top: 15px;">正在等待司机接单</span>
+				</div>
+				<div id="pay-div" style="display:none;padding-top: 20px;">
+					<label style="color: red;">订单未支付</label>
+					<br />
+					<span class="color-href" style="display: inline-block;margin-top: 15px;">请前往支付</span>
+				</div>
+				<div id="time-line">
+					<div class="mui-row" style="margin-top: 10px;vertical-align: middle;">
+						<div id="ReceiveName" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent unchooseColor">
+							<span class="font-position">接单</span>
+						</div>
+						<div id="LoadingName" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent unchooseColor">
+							<span class="font-position">装货</span>
+						</div>
+						<div id="ArrivalsName" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent unchooseColor">
+							<span class="font-position">送达</span>
+						</div>
+						<div id="SureName" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent unchooseColor">
+							<span class="font-position">确认</span>
+						</div>
+					</div>
+					<div class="mui-row" style="height: 24px;">
+						<div class="mui-col-sm-1 mui-col-xs-1"></div>
+						<div class="mui-col-sm-0_4 mui-col-xs-0_4">
+							<img id="ReceiveImg" style="width: 40%;height: 10%;margin-left: 12px;" src="../../public/images/Detail-NodeGray.png" />
+						</div>
+						<div class="mui-col-sm-2_4 mui-col-xs-2_4 YCenter" style="height: 100%;margin-left: 10px;">
+							<div style="background-color: #999999;height: 1px;width: 96%;">&nbsp;</div>
+						</div>
+						<div class="mui-col-sm-0_4 mui-col-xs-0_4">
+							<img id="LoadingImg" style="width: 40%;height: 10%;margin-left: 0px" src="../../public/images/Detail-NodeGray.png" />
+						</div>
+						<div class="mui-col-sm-2_4 mui-col-xs-2_4 YCenter" style="height: 100%;margin-left: 0px;">
+							<div style="background-color: #999999;height: 1px;width: 98%;">&nbsp;</div>
+						</div>
+						<div class="mui-col-sm-0_4 mui-col-xs-0_4">
+							<img id="ArrivalsImg" style="width: 40%;height: 10%;margin-left: 5px" src="../../public/images/Detail-NodeGray.png" />
+						</div>
+						<div class="mui-col-sm-2_4 mui-col-xs-2_4 YCenter" style="height: 100%;margin-left: 4px;">
+							<div style="background-color: #999999;height: 1px;width: 99%;">&nbsp;</div>
+						</div>
+						<div class="mui-col-sm-0_4 mui-col-xs-0_4">
+							<img id="SureImg" style="width: 40%;height: 10%;margin-left: 5px" src="../../public/images/Detail-NodeGray.png" />
+						</div>
+						<div class="mui-col-sm-1 mui-col-xs-1"></div>
+					</div>
+					<div class="mui-row">
+						<div id="ReceiveTime" name="updateTime" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent HeadTimeFont unchooseColor">
+							
+						</div>
+						<div id="LoadingTime" name="loadedTime" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent HeadTimeFont unchooseColor">
+							
+						</div>
+						<div id="ArrivalsTime" name="sendTime" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent HeadTimeFont unchooseColor">
+							
+						</div>
+						<div id="SureTime" name="receiveTime" class="mui-col-sm-3 mui-col-xs-3 Padding3Percent HeadTimeFont unchooseColor">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul>
+						<li id="dirveInformation" class="mui-card border" style="padding: 16px;">
+							<div class="card-title border-bottom">
+								<div class="mui-row flex">
+									<div class="mui-col-sm-8 mui-col-xs-8">
+										司机信息
+									</div>
+									<!--<div class="mui-col-sm-1 mui-col-xs-1">
+									</div>-->
+									<div id="contact" class="contact mui-col-sm-4 mui-col-xs-4" style="text-align: right;">
+										<img style="width: 20px;height: 20px;background-position-x: right;" src="../../public/images/Detail-Phone.png" />
+										<span style="position: relative;top: -5px;">联系司机</span>
+									</div>
+								</div>
+							</div>
+							<div>
+								<label>姓名：</label><span id="driverName" name="driverName"><font class="color-href">师傅</font></span> &nbsp;&nbsp;&nbsp;
+								<span style="display: inline-block; width: 80px; padding-top: 10px;">
+									<span id="spanEvaluateTotal"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+								</span>
+							</div>
+							<div>
+								<label>车牌号：</label><span name="CardID">闽A1234</span>
+							</div>
+						</li>
+						<li class="mui-card border" style="padding: 16px;">
+							<div class="card-title border-bottom">
+								<div class="mui-row">
+									<div class="mui-col-sm-8 mui-col-xs-8">
+										货物信息
+									</div>
+									<!--<div class="mui-col-sm-1 mui-col-xs-1">
+									</div>-->
+									<div id="position" class="position mui-col-sm-4 mui-col-xs-4" style="text-align: right;">
+										<img style="width: 22px;height: 22px;" src="../../public/images/Detail-location.png" />
+										<span style="position: relative;top: -5px;">货单位置</span>
+									</div>
+								</div>
+							</div>
+							<div id="track-0" style="padding-top: 10px;">
+								<label>发单照片：</label>
+								<span>图片加载中...</span>
+								<img name="pic1" />
+								<img name="pic2" />
+								<img name="pic3" />
+							</div>
+							
+							<div style="padding: 8px 0px;">
+								<div id="busi-id-1">
+									<label>待托运车辆型号：</label><span name="vehicleType"></span>
+									<br />
+									<label>待托运车辆车牌：</label><span name="vehicleNo"></span>
+								</div>
+								<div id="busi-id-other">
+									<label>货物名称：</label><span name="goodsType"></span>
+								</div>
+								<label>其它要求：</label><span name="remark"></span>
+							</div>
+						</li>
+						<li class="mui-card border" style="padding: 16px;">
+							<div class="card-title border-bottom" style="height: 37px;">配送信息</div>
+							<div style="padding: 8px 0px;">
+								<div id="all-addr"></div>
+								<label>收货地址：</label><span name="endAddr"></span>
+								<br />
+								<label>收货人：</label><span name="receiver"><font class="color-href"></font></span>
+								<br />
+								<label>配送方式：</label><span name="busiName"></span>
+								<!--2017-10-9-->
+								<div id="track-1" style="padding-top: 10px;display: none;">
+									<label>装货现场照片：</label>
+									<span>图片加载中...</span>
+									<img name="pic1" />
+									<img name="pic2" />
+									<img name="pic3" />
+								</div>
+								
+								<div id="track-2" style="padding-top: 10px;display: none;">
+									<label>送达现场照片：</label>
+									<span>图片加载中...</span>
+									<img name="pic1" />
+									<img name="pic2" />
+									<img name="pic3" />
+								</div>
+							
+							</div>
+						</li>
+						<li id="order-evaluate" class="mui-card border" style="padding: 16px;">
+							<div class="card-title border-bottom" style="height: 37px;">订单信息</div>
+							<div style="padding: 8px 0px;">
+								<label>订单评价: <span id="spanEvaluate"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span></label>
+								<br />
+								<label>评价内容：</label><span id="evaluateRemark" name="evaluateRemark"></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="divEvaluateBox">
+			<div style="position: relative;">
+				<div class="context">
+					<div><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></div>
+					<ul>
+						<li><i>√</i>送货速度快</li>
+						<li><i>√</i>货物无损坏</li>
+						<li><i>√</i>价格较合理</li>
+						<li><i>√</i>服务态度佳</li>
+					</ul>
+				</div>
+				<button class="main-bg-color">评价一下</button>
+			</div>
+		</div>
+		<div id="divShareBox">
+			<dl>
+				<dt>分享到</dt>
+				<dd>
+					<ul>
+						<li>
+							<img src="../../public/images/share/share_wechat.png" />
+							<label>微信好友</label>
+						</li>
+						<li>
+							<img src="../../public/images/share/share_pyq.png" />
+							<label>微信朋友圈</label>
+						</li>
+						<li>
+							<img src="../../public/images/share/share_qq.png" />
+							<label>QQ</label>
+						</li>
+						<!--<li>
+							<img src="../../public/images/share/share_kongjian.png" />
+							<label>QQ空间</label>
+						</li>
+						<li>
+							<img src="../../public/images/share/share_weibo.png" />
+							<label>微博</label>
+						</li>-->
+					</ul>
+				</dd>
+			</dl>
+		</div>
+		<div id="divCoveringLayer"></div>
+		<script type="text/javascript" src="detail.js"></script>
+		<script>
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+			//			window.onload=function(){
+			//				for (i=1;i<=4;i++) {
+			//					document.getElementById("Line"+i).style.height=screen.height/27+'px';
+			//				}
+			//			}
+		</script>
+	</body>
+
+</html>

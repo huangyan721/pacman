@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>速运侠</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link href="../../public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+
+		<style>
+			.mui-input-group:before {
+				height: 0px;
+			}
+			
+			.mui-input-group:after {
+				height: 0px;
+			}
+			
+			.header-info-box {
+				width: 100%;
+				padding-top: 3px;
+				margin-top: 3px;
+				margin-bottom: 10px;
+				font-family: "微软雅黑";
+				background-color: #ffda44;
+			}
+			
+			.header-info-box div {
+				width: 32%;
+				display: inline-block;
+				/*padding: 4px;*/
+				text-align: center;
+			}
+			
+			.header-info-box span {
+				display: block;
+			}
+			
+			.header-info-box label {
+				color: #999999;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-bar-header">
+			<div class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></div>
+			<h1 class="mui-title">余额查询</h1>
+		</header>
+		<div class="mui-content mui-fullscreen">
+			<div style="width: 100%; text-align: center;height:15%;padding: 10px 0;" class="main-bg-color">
+				<div style="font-size: 16px;">余额</div>
+				<div style="font-size: 30px; padding-top: 5px;color: limegreen;margin-top: 8px;"><span id="balance"></span></div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../public/js/mui.min.js"></script>
+	<script type="text/javascript" src="../../public/js/cache.js"></script>
+	<script type="text/javascript" src="../../public/js/common.js"></script>
+	<script>
+		window.addEventListener("pageflowrefresh", function(e) {
+			location.reload();
+		});
+		mui.init();
+		mui.plusReady(function() {
+			Request.post("/order/getUserInfo.do", function(json) {
+				//				console.log("钱包参数："+JSON.stringify(json));
+				if(json.success) {
+					if(json.data.totalMoney == null) {
+						document.getElementById('balance').innerText = '￥' + 0.0;
+					} else {
+						document.getElementById('balance').innerText = '￥' + json.data.totalMoney;
+					}
+				}
+			});
+		})
+	</script>
+
+</html>

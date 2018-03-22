@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../public/css/mui.css" />
+		<link rel="stylesheet" href="../../public/css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		<script type="text/javascript" src="../../public/leaflet/leaflet.location.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+		<style>
+			/*span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}*/
+			
+			.mui-off-canvas-left {
+				color: #fff;
+			}
+			
+			.title {
+				margin: 35px 15px 10px;
+			}
+			
+			.title+.content {
+				margin: 10px 15px 35px;
+				color: #bbb;
+				text-indent: 1em;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			
+			.mui-control-content {
+				background-color: white;
+				height: 140px;
+				min-height: 140px;
+				max-height: 140px;
+				overflow: hidden;
+			}
+			
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div id="offCanvasShow" class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></div>
+			<div id="notify" class="icon icon-notify mui-pull-right" style="position: absolute; right: 0; display: none;"></div>
+			<h1 class="mui-title">货主大人</h1>
+		</header>
+		<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll" style="padding-bottom: 50px;">
+				<div id="slider" class="mui-slider">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted border-bottom">
+						<a class="mui-control-item mui-active" href="#car-type-1">
+							4S专运
+						</a>
+						<a class="mui-control-item" href="#car-type-2">
+							4S顺运
+						</a>
+						<a class="mui-control-item" href="#car-type-3">
+							小件专运
+						</a>
+						<a class="mui-control-item" href="#car-type-4">
+							小件顺运
+						</a>
+						<!--修改：2017-8-29-->
+						<a class="mui-control-item" href="#car-type-5">
+							货运
+						</a>
+					</div>
+					<div class="mui-slider-progress-bar mui-col-xs-2_4"></div>
+					<div class="mui-slider-group border-bottom">
+						<div id="car-type-1" class="mui-slider-item mui-control-content mui-active" style="height: 140px;">
+							<div style="width: 100%; height: 100px; padding-bottom: 40px; text-align: center;">
+								<img src="../../public/images/4szy.png" style="height: 80px; margin-top: 10px; width: auto;" />
+							</div>
+							<div style="position: absolute; bottom: 4px; width: 100%; font-size: 0; text-align: center; line-height: 15px;">
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">5元/公里</span>
+									<span class="color-hint" style="font-size: 12px;">单价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">120元/24公里</span>
+									<span class="color-hint">起步价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">5元</span>
+									<span class="color-hint">服务费</span>
+								</div>
+							</div>
+						</div>
+						<div id="car-type-2" class="mui-slider-item mui-control-content">
+							<div style="width: 100%; height: 100px; padding-bottom: 40px; text-align: center;">
+								<img src="../../public/images/4ssy.png" style="height: 80px; margin-top: 10px; width: auto;" />
+							</div>
+							<div style="position: absolute; bottom: 4px; width: 100%; font-size: 0; text-align: center; line-height: 15px;">
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">3.6元/公里</span>
+									<span class="color-hint" style="font-size: 12px;">单价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">60元/17公里</span>
+									<span class="color-hint">起步价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">5元</span>
+									<span class="color-hint">服务费</span>
+								</div>
+							</div>
+						</div>
+						<div id="car-type-3" class="mui-slider-item mui-control-content">
+							<div style="width: 100%; height: 100px; padding-bottom: 40px; text-align: center;">
+								<img src="../../public/images/zy.png" style="height: 80px; margin-top: 10px; width: auto;" />
+							</div>
+							<div style="position: absolute; bottom: 4px; width: 100%; font-size: 0; text-align: center; line-height: 15px;">
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">0.6元/公里</span>
+									<span class="color-hint" style="font-size: 12px;">单价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">20元/5公里</span>
+									<span class="color-hint">起步价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">0.5元</span>
+									<span class="color-hint">服务费</span>
+								</div>
+							</div>
+						</div>
+
+						<div id="car-type-4" class="mui-slider-item mui-control-content">
+							<div style="width: 100%; height: 100px; padding-bottom: 40px; text-align: center;">
+								<img src="../../public/images/sy.png" style="height: 80px; margin-top: 10px; width: auto;" />
+							</div>
+							<div style="position: absolute; bottom: 4px; width: 100%; font-size: 0; text-align: center; line-height: 15px;">
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">0.3元/公里</span>
+									<span class="color-hint" style="font-size: 12px;">单价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">10元/5公里</span>
+									<span class="color-hint">起步价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">0.5元</span>
+									<span class="color-hint">服务费</span>
+								</div>
+							</div>
+						</div>
+						<!--修改：2017-8-29-->
+						<div id="car-type-5" class="mui-slider-item mui-control-content">
+							<div style="width: 100%; height: 100px; padding-bottom: 40px; text-align: center;">
+								<img src="../../public/images/4ssy.png" style="height: 80px; margin-top: 10px; width: auto;" />
+							</div>
+							<div style="position: absolute; bottom: 4px; width: 100%; font-size: 0; text-align: center; line-height: 15px;">
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">3.6元/公里</span>
+									<span class="color-hint" style="font-size: 12px;">单价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">60元/17公里</span>
+									<span class="color-hint">起步价</span>
+								</div>
+								<div style="display: inline-block; width: 33.3%; font-size: 12px;">
+									<span class="color-text" style="display: block;">5元</span>
+									<span class="color-hint">服务费</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="scroll1" class="mui-scroll-wrapper" style="top: 225px; bottom: 110px; ">
+				<div class="mui-scroll">
+					<div class="mui-card">
+						<div class="mui-slider img-slider">
+							<div class="mui-slider-group mui-slider-loop">
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#"><img src="../../public/images/banner-d.jpg" /></a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#"><img src="../../public/images/banner.jpg" /></a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#"><img src="../../public/images/banner-b.jpg" /></a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#"><img src="../../public/images/banner-c.jpg" /></a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#"><img src="../../public/images/banner-d.jpg" /></a>
+								</div>
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#"><img src="../../public/images/banner.jpg" /></a>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div id="stored-position" class="mui-card border" style="text-align: center; padding: 8px;">
+						使用常用路线
+					</div>
+					<div class="mui-card border" style="padding-left: 16px; font-size: 12px;">
+						<form id="location-container" class="mui-input-group">
+							<div class="mui-input-row">
+								<!-- 定位按钮 -->
+								<span class="icon-dot green"></span>
+								<span class="icon-right icon-location"></span>
+								<input data-index="0" id="start-position-text" type="text" class="color-text" placeholder="出发地" readonly="readonly" style="padding-right: 40px;" />
+								<input id="start-position" type="hidden" />
+							</div>
+							<div class="mui-input-row">
+								<span class="icon-dot" style="background-color: #f4414a;"></span>
+								<span id="add-position" class="icon-right icon-add"></span>
+								<input data-index="1" id="end-position-text" type="text" class="color-text" placeholder="按此输入目的地" readonly="readonly" style="padding-right: 40px;" />
+								<input type="hidden" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="mui-card border" style="text-align: center; padding: 15px;position: absolute; bottom: 50px; left: 0; right: 0;">
+				<span class="color-hint">价格:</span>
+				<span style="font-size: 22px;">¥<font id="price">100</font></span>
+				<span id="price-detail" class="color-href">(价格明细)</span>
+			</div>
+			<div class="background-color-title" style="position: absolute; font-size: 0; bottom: 0; z-index: 1000; height: 44px; width: 100%;">
+				<span id="commit-now" style="display: inline-block; width: 66%; font-size: 17px; line-height: 44px; text-align: center; height: 100%;">立即叫车</span>
+				<span id="commit-appoint" style="display: inline-block; width: 34%; line-height: 44px; font-size: 17px; text-align: center; height: 100%; border-left: 1px solid #333333;">预约</span>
+			</div>
+		</div>
+		
+
+		<script>
+			
+		var main, menu, mask = mui.createMask(_closeMenu);
+
+		var showMenu = false, mode = 'menu-move';
+		 
+		mui.init({
+			swipeBack: false,
+			beforeback: back
+		});
+		
+		var gallery = mui('.img-slider');
+		gallery.slider({
+			interval: 2000 
+		});
+
+		function back() {
+			if (showMenu) {
+				//菜单处于显示状态，返回键应该先关闭菜单,阻止主窗口执行mui.back逻辑；
+				closeMenu();
+				return false;
+			} else {
+				//菜单处于隐藏状态，执行返回时，要先close菜单页面，然后继续执行mui.back逻辑关闭主窗口；
+				menu.close('none');
+				return true;
+			}
+		}
+		//plusReady事件后，自动创建menu窗口；
+		mui.plusReady(function() {
+			main = plus.webview.currentWebview();
+			
+			main.setStyle({
+				transition: {
+					duration: 150
+				}
+			});
+			//setTimeout的目的是等待窗体动画结束后，再执行create webview操作，避免资源竞争，导致窗口动画不流畅；
+			setTimeout(function () {
+				//侧滑菜单默认隐藏，这样可以节省内存；
+				menu = mui.preload({
+					id: 'menu',
+					url: 'menu.html',
+					styles: {
+						left: 0,
+						width: '70%',
+						zindex: 9997,
+						transition: {
+							duration: 150
+						}
+					}
+				});
+			},300);
+			
+		});
+		/**
+		 * 显示菜单菜单
+		 */
+		function openMenu() {
+			
+			if (!showMenu) {
+				//侧滑菜单处于隐藏状态，则立即显示出来；
+				//显示完毕后，根据不同动画效果移动窗体；
+				menu.show('none', 0, function() {
+					var wobj = plus.webview.getWebviewById("menu");
+                    mui.fire(wobj,'pageflowrefresh',{
+                        id:'menu'
+                    });
+					switch (mode){
+						case 'main-move':
+							//主窗体开始侧滑；
+							main.setStyle({
+								left: '70%',
+								transition: {
+									duration: 150
+								}
+							});
+							break;
+						case 'menu-move':
+							menu.setStyle({
+								left: '0%',
+								transition: {
+									duration: 150
+								}
+							});
+							break;
+						case 'all-move':
+							main.setStyle({
+								left: '70%',
+								transition: {
+									duration: 150
+								}
+							});
+							menu.setStyle({
+								left: '0%',
+								transition: {
+									duration: 150
+								}
+							});
+							break;
+					}
+				});
+				//显示遮罩
+				mask.show();
+				showMenu = true;
+			}
+		}
+		/**
+		 * 关闭侧滑菜单
+		 */
+		function closeMenu () {
+			_closeMenu();
+			//关闭遮罩
+			mask.close();
+		}
+		
+		/**
+		 * 关闭侧滑菜单（业务部分）
+		 */
+		function _closeMenu() {
+			if (showMenu) {
+				//关闭遮罩；
+				switch (mode){
+					case 'main-move':
+						//主窗体开始侧滑；
+						main.setStyle({
+							left: '0',
+							transition: {
+								duration: 150
+							}
+						});
+						break;
+					case 'menu-move':
+						//主窗体开始侧滑；
+						menu.setStyle({
+							left: '-70%',
+							transition: {
+								duration: 150
+							}
+						});
+						break;
+					case 'all-move':
+						//主窗体开始侧滑；
+						main.setStyle({
+							left: '0',
+							transition: {
+								duration: 150
+							}
+						});
+						//menu页面同时移动
+						menu.setStyle({
+							left: '-70%',
+							transition: {
+								duration: 150
+							}
+						});
+						
+						break;
+				}
+				
+				//等窗体动画结束后，隐藏菜单webview，节省资源；
+				setTimeout(function() {
+					menu.hide();
+				}, 200);
+				//改变标志位
+				showMenu = false;
+			}
+		}
+		
+		//变换侧滑动画移动效果；
+		mui('.mui-input-group').on('change', 'input', function() {
+			if (this.checked) {
+				switch (this.value) {
+					case 'main-move':
+						//仅主窗口移动的时候，menu页面的zindex值要低一点；
+						menu.setStyle({left:'0',zindex:9997});
+						if(mode=='all-move') {
+							menu.setStyle({
+								left: '0%'
+							});
+						}
+						mode = 'main-move';
+						break;
+					case 'menu-move':
+						menu.setStyle({left:'-70%',zindex:9999});
+						if(mode=='all-move'){
+							menu.setStyle({
+								left: '0%'
+							});
+						}
+						mode = 'menu-move';
+						break;
+					case 'all-move':
+						//切换为整体移动
+						//首先改变移动标志
+						slideTogether = true;
+						//变换menu界面初始化位置，整体移动时，Menu界面left需要在-70%的地方；
+						menu.setStyle({
+							left: '-70%'
+						});
+						mode = 'all-move';
+						break;
+				}
+			}
+		});
+
+		 //点击左上角图标，打开侧滑菜单；
+		document.querySelector('.mui-icon-bars').addEventListener('tap', openMenu);
+
+		 //在android4.4中的swipe事件，需要preventDefault一下，否则触发不正常
+		 //故，在dragleft，dragright中preventDefault
+		window.addEventListener('dragright', function(e) {
+			e.detail.gesture.preventDefault();
+		});
+		window.addEventListener('dragleft', function(e) {
+			e.detail.gesture.preventDefault();
+		});
+		
+		window.addEventListener("menu:swipeleft", closeMenu);
+		
+		//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+		mui.menu = function() {
+			if (showMenu) {
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		}
+		
+		//主界面和侧滑菜单界面均支持区域滚动；
+		mui('#offCanvasContentScroll').scroll();
+
+		</script>
+	</body>
+
+</html>

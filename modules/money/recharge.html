@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>速运侠</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<link href="../../public/css/mui.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="../../public/css/style.css" />
+
+		<style>
+			.mui-input-group:before {
+				height: 0px;
+			}
+			
+			.mui-input-group:after {
+				height: 0px;
+			}
+			
+			.header-info-box {
+				width: 100%;
+				padding-top: 3px;
+				margin-top: 3px;
+				margin-bottom: 10px;
+				font-family: "微软雅黑";
+				background-color: #ffda44;
+			}
+			
+			.header-info-box div {
+				width: 32%;
+				display: inline-block;
+				text-align: center;
+			}
+			
+			.header-info-box span {
+				display: block;
+			}
+			
+			.header-info-box label {
+				color: #999999;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-bar-header">
+			<div class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></div>
+			<h1 class="mui-title">充值</h1>
+		</header>
+		<div class="mui-content mui-fullscreen">
+
+			<div style="background-color: #ffffff;padding:10px 10px 0 10px;margin-bottom: 30px;">
+				<div>输入充值金额</div>
+				<div class="mui-input-group" style="font-size: 20px;">
+					￥ <input id="recharge-money" onkeyup="onlyNonNegative(this)" class="mui-input-row" type="number" min="0" style="width:90%;font-size:18px;height: 60px"/>
+				</div>
+			</div>
+				<div style="font-size: 12px;color:gray;text-align: center;">
+					充值的金额将无法提现，且每次充值金额不得超过5000
+				</div>
+				<div id="submit" style="margin-top: 5px;">
+					<button id="sub-recharge" style="width: 90%;padding: 10px;font-size: 18px;position: relative;left: calc(50% - 45%);" class="main-bg-color">充值</button>
+				</div>
+		</div>
+
+		<div id="payment" class="mui-backdrop" style="display: none;">
+			<div id="payment-panel" style="position: absolute; bottom: 0; left: 0; right: 0;">
+				<div style="width: 100%; background-color: white;">
+					<span style="display: inline-block;text-align: center; width: 100%; font-size: 22px; line-height: 52px;">¥<span id="price-2">88</span></span>
+					<span style="width: 92%; margin-left: 4%; height: 1px; display: block; background-color: #E7E7E7;"></span>
+					<ul id="off-canvas-menu" class="mui-table-view" style="background-color: white;">
+						<li class="mui-table-view-cell mui-radio mui-right">
+							<input name="radio" type="radio" checked="checked"><span class="icon icon-alipay"></span><span style="line-height: 24px; vertical-align: top; font-size: 14px; margin-left: 8px;">支付宝支付</span>
+						</li>
+						<li class="mui-table-view-cell mui-radio mui-right">
+							<input name="radio" type="radio"><span class="icon icon-wechat"></span><span style="line-height: 24px; vertical-align: top; font-size: 14px; margin-left: 8px;">微信支付</span>
+						</li>
+					</ul>
+
+				</div>
+				<div id="pay" class="background-color-title" style="width: 100%; height: 44px; text-align: center; line-height: 44px;">
+					去支付
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../public/js/mui.min.js"></script>
+	<script type="text/javascript" src="../../public/js/cache.js"></script>
+	<script type="text/javascript" src="../../public/js/common.js"></script>
+	<script>
+		var wxChannel = null; // 微信支付 
+		var aliChannel = null; // 支付宝支付 
+		var channel = null;
+		window.addEventListener("pageflowrefresh", function (e) {
+		    location.reload();
+		});
+		
+		//修改：2017-9-4限制金额输入
+		function onlyNonNegative(obj) {  
+			var inputChar = event.keyCode;  
+			//alert(event.keyCode);   
+			//1.判断是否有多于一个小数点  
+			if(inputChar==190 ) {//输入的是否为.  
+				var index1 = obj.value.indexOf(".") + 1;//取第一次出现.的后一个位置  
+				var index2 = obj.value.indexOf(".",index1);  
+				while(index2!=-1) {  
+				//alert("有多个.");       
+				obj.value = obj.value.substring(0,index2);  
+					index2 = obj.value.indexOf(".",index1);  
+				}  
+			} 
+			//金额不能超过5000
+			if(obj.value>5000){
+				obj.value = 5000;
+			}
+			//只能有两位小数
+		    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+			//2.如果输入的不是.或者不是数字，替换 g:全局替换  
+			obj.value = obj.value.replace(/[^(\d|.)]/g,"");  
+		}
+		
+		mui.init();
+		function plusReady() {
+			
+			// 获取支付通道 
+			plus.payment.getChannels(function(channels) {
+				for(var i = 0; i < channels.length; i++) {
+					if(channels[i].id == "wxpay") {
+						wxChannel = channels[i];
+					}
+					if(channels[i].id == "alipay") {
+						aliChannel = channels[i];
+					}
+				}
+			}, function(e) {
+				alert("获取支付通道失败："); //+e.message
+			});
+		}
+		document.addEventListener('plusready', plusReady, false);
+
+		document.getElementById("payment").addEventListener('tap', function(e) {
+			if(e.target == this) {
+				document.getElementById("payment").style.display = 'none';
+			}
+		});
+		document.getElementById('sub-recharge').addEventListener('tap', function() {
+			var rechargeMoney = document.getElementById('recharge-money').value;
+			if(rechargeMoney) {
+				validate(false);
+				document.getElementById('price-2').innerHTML = rechargeMoney
+			} else {
+				mui.toast("请输入充值金额");
+				return
+			}
+		});
+		document.getElementById("pay").addEventListener('tap', function() {
+			validate(true);
+		});
+
+		var flag = true;
+		var count = 0;
+		function validate(commit) {
+			document.activeElement.blur();
+			var user = Cache.getUser();
+			var reMoney = document.getElementById('recharge-money').value;
+			var p = {};
+			p.username = user.userName;
+			p.userNo = user.userNo;
+			p.type = 3;
+//			p.money = reMoney;//正式
+			p.money = 0.01;//测试
+
+			if(!commit) {
+				document.getElementById("payment").style.display = '';
+				return;
+			}
+			mui.each(document.getElementsByName('radio'), function(index, item) {
+				if(item.checked) {
+					p.payType = index + 1;
+				}
+			});
+			if(!p.payType) {
+				mui.toast('请选择支付方式');
+				return;
+			}
+
+			if(flag == true) {
+				flag = false;
+				Request.post('/order/addMoney.do', p, function(json) {
+					console.log(JSON.stringify(json));
+					if(json.success) {
+						if(p.payType == 1) {
+							pay('alipay', json.data.rechargeNo);
+						} else if(p.payType == 2) {
+							pay('wxpay', json.data.rechargeNo);
+						} else {
+							mui.open('money', 'index', {
+								rechargeNo: json.data.rechargeNo
+							});
+						}
+
+					} else {
+						console.log("请求失败flag=true")
+						flag = true;
+					}
+				});
+			}
+
+		}
+
+//		var ALIPAYSERVER = 'http://youxi.xicp.cn/orderpay/goAlipayPay.do?rechargeNo=';
+//		var WXPAYSERVER = 'http://youxi.xicp.cn/orderpay/goPayCharge.do?rechargeNo=';
+		
+//		var ALIPAYSERVER = 'http://www.suyunxia.com/orderpay/goAlipayPay.do?rechargeNo=';
+//		var WXPAYSERVER = 'http://www.suyunxia.com/orderpay/goPayCharge.do?rechargeNo=';
+		
+//		var ALIPAYSERVER='http://119.23.53.246:8081/orderpay/goAlipayPay.do?rechargeNo='; 
+//		var WXPAYSERVER='http://119.23.53.246:8081/orderpay/goPayCharge.do?rechargeNo=';
+		
+		var ALIPAYSERVER='http://17788h3z50.51mypc.cn:31100/orderpay/goAlipayPay.do?rechargeNo='; 
+		var WXPAYSERVER='http://17788h3z50.51mypc.cn:31100/orderpay/goPayCharge.do?rechargeNo=';
+
+//		var ALIPAYSERVER='http://192.168.31.246:8080/orderpay/goAlipayPay.do?rechargeNo='; 
+//		var WXPAYSERVER='http://192.168.31.246:8080/orderpay/goPayCharge.do?rechargeNo=';
+
+		// 2. 发起支付请求 
+		function pay(id, rechargeNo) {
+			var PAYSERVER = '';
+			if(id == 'alipay') {
+				PAYSERVER = ALIPAYSERVER + rechargeNo;
+				channel = aliChannel;
+			} else if(id == 'wxpay') {
+				PAYSERVER = WXPAYSERVER + rechargeNo;
+				channel = wxChannel;
+			} else {
+				plus.nativeUI.alert("不支持此支付通道！", null, "捐赠");
+				//console.log("不支持此支付通道flag=true")
+				flag = true;
+				return;
+			}
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					plus.payment.request(channel, xhr.responseText,
+						function(result) {
+							plus.nativeUI.alert("支付成功！", function() {
+								mui.open('money', 'index', {
+									rechargeNo: rechargeNo
+								});
+								var wobj = plus.webview.getWebviewById("money/index");
+				                mui.fire(wobj,'pageflowrefresh',{
+				                    id:'money/index'
+				                });
+							});
+						},
+						function(error) {
+							var errorMsg = JSON.stringify(error);
+							if(errorMsg.indexOf("微信:-2") != -1 || errorMsg.indexOf("支付宝:62001") != -1) {
+								plus.nativeUI.alert("支付失败");
+							} else {
+								plus.nativeUI.alert("支付失败"); // + error.code
+							}
+							//console.log("支付失败flag=true")
+							flag = true;
+						}
+					);
+				}
+			}
+
+			xhr.open('GET', PAYSERVER);
+			xhr.send();
+		}
+	</script>
+
+</html>

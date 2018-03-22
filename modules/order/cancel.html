@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>取消订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		
+		<style>
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 0;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">取消订单</h1>
+		</header>
+		
+		<div class="mui-content">
+			<span class="color-hint" style="font-size: 14px; display: inline-block; padding: 8px;">请输入取消原因: </span>
+			<div class="mui-card" style="width: 100%; margin: 0; border-radius: 0;">
+				<form class="mui-input-group">
+					<div class="mui-input-row mui-radio">
+						<label>我想重新发单</label>
+						<input name="reason" type="radio" checked>
+					</div>
+					<div class="mui-input-row mui-radio">
+						<label>信息填写有误</label>
+						<input name="reason" type="radio">
+					</div>
+					<div class="mui-input-row mui-radio">
+						<label>已不需要用车</label>
+						<input name="reason" type="radio">
+					</div>
+					<div class="mui-input-row mui-radio">
+						<label>司机未及时到达</label>
+						<input name="reason" type="radio">
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div id="cancel" class="background-color-title" style="position: absolute; bottom: 0; width: 100%; height: 44px; text-align: center; line-height: 44px;">
+			确认取消
+		</div>
+
+		<script type="text/javascript" src="cancel.js"></script>
+
+	</body>
+
+</html>

@@ -1,0 +1,22 @@
+button {
+	width: 100%; height: 40px; font-size: 14px; color: #333333; border-radius: 0; border: 0;
+}
+.form-box{line-height: 18px; margin: 10px;}
+.form-box > div, .form-box div input{background: #e7e7e7; margin: auto; }
+.form-box div{display: block; position:relative; height: 53px; margin-bottom: 1px;line-height: 43px; padding-top: 5px;}
+.form-box span{display: inline-block; height: 43px; width: 60px; text-align: center; 
+	border-right: 1px solid #333333;line-height: 43px;}
+.form-box span>img{width: 30px; height: 30px; vertical-align: middle;}
+.form-box input[type='text'],
+.form-box input[type='tel'],
+.form-box input[type='password']{border: 0; width: 75%; font-size: 16px; line-height: 21px;}
+.form-box input[name='vCode']{width: 139px;}
+#btnGetVCode{
+	float: right; display: inline-block; width: 90px; height: 100%; border: 0; z-index: 9;
+}
+
+
+.form-box img {
+	width: 25px;
+	height: 25px;
+}

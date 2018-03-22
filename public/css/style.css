@@ -1,0 +1,278 @@
+html, body .mui-content, .mui-table-view {
+	background-color: #F3F4F6;
+	color: #333333;
+}
+
+ul,li,dl, dt, dd {
+	margin: 0; padding: 0; list-style: none; border: 0;
+}
+
+input {
+	font-size: 14px;
+}
+
+.mui-radio input[type=radio]:before {
+	content: '';
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	background: url(../images/input-unselect.png) center no-repeat;
+	background-size: 100% 100%;
+}
+.mui-radio input[type=radio]:checked:before {
+	content: '';
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	background: url(../images/input-select.png) center no-repeat;
+	background-size: 100% 100%;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+    color: #b2b2b2;
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder { 
+    color: #b2b2b2;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder { 
+    color: #b2b2b2;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+    color: #b2b2b2;
+}
+
+.mui-input-row label {
+	white-space: nowrap;
+}
+
+.mui-table-view:before {
+	height: 0;
+}
+
+.mui-table-view:after {
+	height: 0;	
+}
+
+.mui-table-view {
+	font-size: 14px;
+}
+
+.color-text {
+	color: #333333;
+}
+
+.color-hint {
+	color: #B2B2B2;
+}
+
+.color-href {
+	color: #38adff;
+}
+.main-bg-color, .background-color-title {
+	background-color: #ffda44;
+}
+
+.mui-bar-nav {
+	box-shadow: none;
+	background-color: #ffda44;
+}
+
+.mui-title {
+	font-weight: normal; 
+}
+
+.mui-off-canvas-left, .mui-off-canvas-right {
+	background-color: white;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+	background-color: #ffda44;
+}
+.mui-segmented-control {
+	background-color: white;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+	color: #b2b2b2;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	color: #333333;
+}
+
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-group .mui-slider-item {
+	border: none;	
+}
+
+.border {
+	border: 1px solid #E7E7E7;
+}
+
+.border-bottom {
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.border-right {
+	border-right: 1px solid #e7e7e7;
+}
+
+.background-color-white {
+	background-color: white;
+}
+
+.mui-card {
+	box-shadow: none;
+	border-radius: 5px;
+}
+
+.mui-bar-nav .icon {
+	width: 44px;
+	height: 44px;
+	background-size: 20px 20px;
+	background-position: 12px 12px;
+}
+
+.icon {
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.icon-notify {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../images/icon-notify.png);
+}
+
+.icon-del {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../images/icon-del.png);
+}
+
+.icon-alipay {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../images/icon-alipay.png);
+}
+
+.icon-wechat {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../images/icon-wechat.png);
+}
+
+.icon-offline {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background-image: url(../images/icon-offline.png);
+}
+
+
+div.table-item, input.table-item {
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	float: right;
+	width: 60%;
+	display: inline-block;
+	border: none;	
+	text-align: right;
+}
+
+/*********评分样式**********/
+#spanEvaluate{
+	display: inline-block; height: 16px; font-size: 18px;
+}
+#spanEvaluate i{
+	font-style: normal;
+}
+#divEvaluateBox{
+	position: fixed; bottom: 0; left: 0; height: 200px; width: 100%; border: 0; margin: auto; font-size: 16px; z-index: 999;  display: none;
+}
+#divEvaluateBox div.context{
+	text-align: center; margin: 10px; background: white; height: 140px;  border-radius: 5px; 
+}
+#divEvaluateBox div.context ul{margin: 0; margin-top: 10px; font-size: 14px; width: 100%;}
+#divEvaluateBox div.context ul li{
+	width: 48%; vertical-align: top; display: inline-block;  line-height: 30px; margin: 2px;
+}
+#divEvaluateBox div.context div i{
+	font-style: normal; font-size: 22px; padding: 8px; padding-top: 15px; display: inline-block;border-bottom: 1px solid #F3F4F6; 
+}
+#divEvaluateBox div.context ul li i{
+	display: inline-block; height: 20px; width: 20px; font-weight: bold; border-radius: 10px; line-height: 20px; 
+	margin: 2px; margin-right: 5px; background-color: #b2b2b2;  color: white;
+}
+#divEvaluateBox div.context ul li.checked i{
+	background-color: green;
+}
+#divEvaluateBox button{
+	width: 100%; height: 40px; border: 0;  border-radius: 0; 
+}
+
+/*********************分享*****************/
+#divShareBox{
+	position: fixed; bottom: 0; left: 0; width: 100%; border: 0; margin: auto; font-size: 14px; z-index: 999; background: white; text-align: center; display: none;
+}
+#divShareBox dl, #divShareBox dt, #divShareBox dd {width:100%;}
+#divShareBox dl{margin: auto; position: relative; text-align: center; }
+#divShareBox dt{color:#323232; height: 35px; margin-bottom: 5px; line-height: 35px; padding-top: 5px; border-bottom: 1px solid #e7e7e7; width: 60%; margin: auto;}
+#divShareBox dd ul{margin-top: 10px; margin-bottom: 5px;}
+#divShareBox dd li{vertical-align: top; width: 19%; display: inline-block; font-size: 13px; display: none;}
+#divShareBox dd li img{width:45px; height: 45px; display: inline-block; vertical-align: middle; text-align: center; border: 0;}
+#divShareBox dd li label{display: inline-block; width: 100%; line-height: 26px;}
+
+
+.icon-right {
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	height: 40px;
+	width: 40px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.icon-dot {
+	position: absolute;
+	left: 0px;
+	top: 17px;
+	width: 6px;
+	height: 6px;
+	border-radius: 3px;
+	background-color: #23ca33;
+}
+
+.icon-dot.green {
+	background-color: #23ca33;
+}
+
+.icon-dot.yello {
+	 background-color: #ffda44;
+}
+
+.icon-location {
+	background-image: url(../images/icon-location.png);
+	background-size: 16px 16px;
+}
+
+.icon-add {
+	border: none;
+	background-image: url(../images/icon-plus.png);
+	background-size: 14px 14px;
+}
+
+.icon-remove {
+	border: none;
+	background-image: url(../images/icon-plus.png);
+	background-size: 14px 14px;
+	transform: rotate(45deg);
+}

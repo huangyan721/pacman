@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script src="../../public/js/mui.min.js"></script>
+		<style type="text/css">
+			img{
+				width: 100px;
+				height: 100px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">常见问题</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view problem-answer" style="background-color: white;margin-top: 0;">
+			    <li data-index='0' class="mui-table-view-cell answer-li">如何预约车辆服务？</li>
+			    <li data-index='1' class="mui-table-view-cell answer-li">如何联系司机？</li>
+			    <li data-index='2' class="mui-table-view-cell answer-li">如何取消叫车？</li>
+			    <li data-index='3' class="mui-table-view-cell answer-li">有没有发票？</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			mui.init();
+			
+			mui('.problem-answer').on('tap','.answer-li',function(){
+				mui.openWindow({
+					url: './answer.html'
+				});
+				var html = this.innerHTML;
+				var problemIndex = this.dataset.index;
+				localStorage.setItem('index',problemIndex)
+				localStorage.setItem('html',html);
+			})
+			
+		</script>
+	</body>
+
+</html>

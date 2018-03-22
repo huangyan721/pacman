@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>模板</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<style>
+			.mui-pull-top-pocket {
+				overflow: visible;
+			}
+			.mui-pull-right {
+				color: black;
+			}
+			.image{
+				width: 80px;
+				height: 1px;
+				position: relative;
+				bottom: -10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">价格明细</h1>
+		</header>
+		<div class="mui-content">
+			<div style="margin-top: 50px;margin-left: 40px;margin-right: 40px;width: calc(100% - 80px)">
+				<div style="display: flex;justify-content: space-between;">
+					<img class="image" src="../../public/images/short-line.png"/>
+					<span style="color: gray;">价格估计</span>
+					<img class="image" src="../../public/images/short-line.png"/>
+				</div>
+				<div style="text-align: center;margin-top: 30px;">
+					<span>￥</span>
+					<span style="font-size: 50px;" id="orderPrice">0</span>
+					<span style="font-size: 14px;color:dimgray;display: none;" id="kilometer">(总里程<label>0</label>公里)</span>
+				</div>
+				<div style="text-align: left;font-size: 17px;margin-top: 30px;" id="price">
+					起步价<label></label><span class="mui-pull-right">￥0</span><br /><br />
+					服务费<label></label><span class="mui-pull-right">￥0</span>
+				</div>
+				<img src="../../public/images/long-line.png" style="width: 100%;"/>
+				<div style="margin-top: 10px;">
+					<p style="font-size: 15px;">若产生高速费、停车费和搬运费，请用户额外支付 ；若涉及逾时等候费，请与司机按收费标准结算</p>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+	</body>
+</html>
+<script>
+	
+	mui.plusReady(function(){
+		var params = plus.webview.currentWebview();
+		console.log(JSON.stringify(params))
+		params.kilometer = params.kilometer || 0;
+		document.querySelector('#kilometer label').innerHTML = params.kilometer;
+		var startPrice = [120, 60, 20, 10,60][params.busiId - 1];
+		// 保险费用
+		var servicePrice = [5, 5, 0.5, 0.5, 5][params.busiId - 1]
+		document.getElementById('orderPrice').innerHTML = (params.orderPrice || 0) + '';
+		
+		document.querySelector('#price label').innerHTML = '(' + ['4S专运','4S顺运','小件专运','小件顺运','货运'][params.busiId -1] +')';
+		document.querySelector('#price span').innerHTML = '￥' + startPrice;
+		document.querySelectorAll('#price span')[1].innerHTML = '￥' + servicePrice;
+	});
+			
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的消息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+	</head>
+	<style type="text/css">
+		.mui-table-view-cell{
+			padding: 12px 15px;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">我的钱包</h1>
+		</header>
+		<div class="mui-content mui-fullscreen">
+			<ul class="mui-table-view" style="background-color: white;margin-top: 0;">
+				<li class="mui-table-view-cell" id="checked">
+					<a class="mui-navigate-right" style="font-size: 16px;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/bond.png" style="width: 20px;height: 20px;"/>
+						查询余额
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="recharge">
+					<a class="mui-navigate-right" style="font-size: 16px;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/bank_card.png" style="width: 20px;height: 20px;"/>
+						充值
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.addEventListener("pageflowrefresh", function (e) {
+		    location.reload();
+		});
+		mui.init();
+		document.getElementById('recharge').addEventListener('tap',function(){
+			mui.open('money','recharge');
+			var wobj = plus.webview.getWebviewById("money/recharge");
+            mui.fire(wobj,'pageflowrefresh',{
+                id:'money/recharge'
+            });
+		})
+		document.getElementById('checked').addEventListener('tap',function(){
+			mui.open('money','checked');
+			var wobj = plus.webview.getWebviewById("money/checked");
+            mui.fire(wobj,'pageflowrefresh',{
+                id:'money/checked'
+            });
+		})
+		
+	</script>
+</html>

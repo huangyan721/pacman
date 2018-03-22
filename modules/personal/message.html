@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../public/css/style.css" />
+	</head>
+	<style type="text/css">
+		.mui-navigate-right {
+			font-size: 18px;
+			padding: 0;
+			margin: 0;
+		}
+		
+		.mui-navigate-right a {
+			vertical-align: middle;
+		}
+		
+		.mui-table-view-cell span {
+			font-size: 16px;
+			vertical-align: middle;
+		}
+		
+		.YCenter {
+			display: flex;
+			align-items: center;
+		}
+		
+		#divCoveringLayer {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			opacity: 0.35;
+			z-index: 990;
+			display: none;
+		}
+		
+		#img {
+			display: inline-block;
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			background-color: gainsboro;
+			margin-left: 65%;
+		}
+		
+		input[type=text] {
+			border: 0;
+			width: 75%;
+			font-size: 16px;
+			line-height: 21px;
+			margin: 0px;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">个人信息</h1>
+			<span id="save" class="mui-pull-right" style="font-size: 16px; line-height: 44px;">保存</span>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view" style="margin-top: 0;">
+				<li id="photo" class="mui-table-view-cell">
+					<span style="position: absolute;top: 50%;">头像</span>
+					<img id="img" src="" />
+				</li>
+				<li id="sex" class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<span>性别</span>
+						<span id="sexName" style="margin-left: 2%;"></span>
+					</a>
+				</li>
+				<li id="userN" class="mui-table-view-cell YCenter" style="padding-top: 0px;padding-bottom: 0px;">
+					<span>昵称</span>
+					<input style="background-color: inherit;" maxlength="8" type="text" id="nicheng" name="nicheng" placeholder="请输入昵称（不超过8个字符）" />
+				</li>
+
+			</ul>
+
+			<div id="sexMenu" class="sexItem" style="z-index:1000;display:none;width: 80%;height: 140px;background-color: white;position: absolute;left: calc(50% - 40%);border: 1px solid gainsboro;">
+				<div style="margin: 15px;">性别</div>
+				<div data-index="0" class="mui-input-row mui-radio mui-right" style="border-bottom: 1px solid gainsboro;">
+					<label id="girl">女</label>
+					<input name="radio1" type="radio" id="radiogirl">
+				</div>
+				<div data-index="1" class="mui-input-row mui-radio mui-right">
+					<label id="boy">男</label>
+					<input name="radio1" type="radio" id="radioboy">
+				</div>
+			</div>
+		</div>
+		<div id="divCoveringLayer"></div>
+
+		<script src="../../public/js/mui.min.js"></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		<script src="../../public/js/cache.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			//更新用户头像，主要是裁剪页面裁剪完后触发的
+	        //添加updateHeadImg自定义事件监听
+	        window.addEventListener('updateHeadImg',function(event){
+	          //获得事件参数
+	          console.log("path:"+event.detail.img_path);
+	          var my_icon = event.detail.img_path;
+	          //根据id向服务器请求新闻详情
+	          if(my_icon != "") {
+	                document.getElementById("img").src = my_icon;
+	            }
+	        });
+
+			mui.plusReady(function() {
+				//修改昵称长度
+				// 获取字符串的字节长度
+			
+//				console.log("当前页面URL："+plus.webview.currentWebview().id)
+				//获取昵称
+				var user = Cache.getUser();
+				if(user) {
+					nicheng.value = user.userName || user.userNo;
+					if(user.image != null) {
+						img.src = user.image;
+					} else {
+						img.src = '../../public/images/banner-1.png';
+					}
+					if(user.gender == null) {
+						sexName.innerText = '未填写'
+					} else {
+						sexName.innerText = user.gender;
+					}
+				}
+				var num = user.userNo;
+				//获取性别
+				document.getElementById('sex').addEventListener('tap', function() {
+					document.getElementById('sexMenu').style.display = 'block';
+					divCoveringLayer.style.display = 'block';
+					if(sexName.innerText == "女"){
+						document.getElementById('radiogirl').checked = true
+					}else{
+						document.getElementById('radioboy').checked = true
+					}
+					mui('.sexItem').on('tap', '.mui-input-row', function() {
+						if(this.dataset.index == 0){
+							document.getElementById('sexName').innerText = document.getElementById('girl').innerText;
+						}else{
+							document.getElementById('sexName').innerText = document.getElementById('boy').innerText;
+						}
+						
+						document.getElementById('sexMenu').style.display = 'none';
+						divCoveringLayer.style.display = 'none';
+						var gender = document.getElementById('sexName').innerText;
+						localStorage.setItem('gender', gender);
+					})
+					divCoveringLayer.addEventListener('tap',function(){
+						document.getElementById('sexMenu').style.display = 'none';
+						divCoveringLayer.style.display = 'none';
+					})
+				})
+				//获取头像
+				document.getElementById('photo').addEventListener('tap', function() {
+					var _this = this;
+					plus.nativeUI.actionSheet({
+							cancel: "取消",
+							buttons: [{
+								title: "从手机相册选择"
+							}, {
+								title: '拍照'
+							}]
+						},
+						function(e) {
+							if(e.index == 1) { //点击从相册选择
+								getPics(false, _this);
+							}
+							if(e.index == 2) {
+								getPics(true, _this);
+							}
+						}
+					);
+				})
+
+				function getPics(isCamera, imgBox) {
+					if(!isCamera) {
+						plus.gallery.pick(function(path) {
+							cutImage(path)
+//							showImg(path, imgBox);
+						}, function(e) {
+							mui.toast("取消选择图片");
+						}, {
+							filter: "image",
+							multiple: false
+						});
+					} else {
+						var cmr = plus.camera.getCamera();
+						cmr.captureImage(function(p) {
+							plus.io.resolveLocalFileSystemURL(p, function(entry) {
+								var path = entry.toLocalURL();
+								cutImage(path)
+//								showImg(path, imgBox);
+							});
+						}, function(e) {
+							//			mui.toast("很抱歉，获取失败 " + e);
+						});
+					}
+				}
+				
+				function cutImage(path) {
+                    mui.openWindow({
+                        url: 'cropper.html',
+                        id: 'cropper',
+                        extras: {
+                            path: path,
+                        },
+                        show: {
+                            aniShow: 'zoom-fade-in',
+                            duration: 800
+                        },
+                        waiting: {
+                            autoShow: true
+                        }
+                    });
+                }
+                
+
+				save.addEventListener('tap', function() {
+					var p = {};
+					if(document.getElementById('nicheng').value &&document.getElementById('nicheng').value.length>10){
+						plus.nativeUI.alert("昵称不能超过十位.");
+						return;
+					}
+					p.userName = document.getElementById('nicheng').value
+					p.gender = localStorage.getItem('gender');
+					p.userNo = num;
+					p.type = 3;
+					p.image = img.src;
+					Request.post('/open/editUser.do', p, function(rs) {
+						if(rs.success) {
+							mui.toast("保存成功");
+							var params = {
+								"type": 3,
+								"uuid": Cache.getUUID(),
+								"userNo": num,
+							}
+							Requert.ajax({
+								url: "/open/reLogin.do",
+								data: params,
+								attr: Requert.ATTR_LOAD_MODEL | Requert.ATTR_LOAD_FORCE,
+								callback: function(rs) {
+								if(rs.success) {
+									rs.data[0].dealRate = rs.data[2].dealRate;
+									rs.data[0].totalOrder = rs.data[2].totalOrder;
+									Cache.setUser(rs.data[0]);
+									Cache.setToken(rs.data[1]);
+									mui.back();
+								} else
+									mui.toast(rs.message);
+								return true;
+						}
+					});
+							
+							
+						} else {
+							mui.toast(rs.message);
+						};
+					})
+				})
+			})
+		</script>
+	</body>
+
+</html>

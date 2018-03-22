@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的消息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<div class="icon icon-del mui-pull-right"></div>
+			<h1 class="mui-title">我的消息</h1>
+		</header>
+		<!--下拉刷新容器-->
+		<div class="mui-content">
+			<div id="pullrefresh" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul id="list" class="mui-table-view" style="padding-top: 8px;">
+						<!--数据列表-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="index.js"></script>
+	</body>
+</html>

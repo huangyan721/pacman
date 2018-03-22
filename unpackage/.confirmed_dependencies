@@ -1,0 +1,466 @@
+{
+  "modules/main/index.html": {
+    "resources": [
+      "public/css/mui.css",
+      "public/images/icon-plus.png",
+      "public/images/icon-setting.png",
+      "public/js/common.js",
+      "public/images/icon-order-normal.png",
+      "public/js/mui.js",
+      "public/images/icon-notify.png",
+      "public/css/style.css",
+      "public/images/banner-1.png",
+      "public/images/icon-location.png",
+      "public/images/icon-service.png",
+      "public/images/icon-message.png",
+      "public/fonts/mui.ttf",
+      "modules/main/index.js",
+      "public/images/car.png",
+      "public/images/sy.png",
+      "public/images/zy.png",
+      "public/images/4ssy.png",
+      "public/images/4szy.png",
+      "public/css/mui.picker.min.css",
+      "public/images/banner.png",
+      "public/leaflet/leaflet.location.js",
+      "public/js/mui.picker.min.js",
+      "public/js/cache.js",
+      "public/images/banner.jpg",
+      "public/images/banner-c.jpg",
+      "public/images/banner-b.jpg",
+      "public/images/banner-d.jpg"
+    ],
+    "refer": [
+      "modules/map/location.html",
+      "modules/main/menu.html",
+      "modules/map/address.html",
+      "modules/order/confirm.html",
+      "modules/order/price-detail.html"
+    ]
+  },
+  "modules/loading/index.html": {
+    "resources": [
+      "public/css/style.css",
+      "public/css/mui.css",
+      "public/js/common.js",
+      "modules/loading/index.js",
+      "public/images/qidong.png",
+      "public/js/cache.js",
+      "public/js/mui.js",
+      "public/images/qidong.jpg",
+      "public/images/logo-icon.png"
+    ],
+    "refer": [
+      "modules/account/login.html",
+      "modules/main/index.html"
+    ]
+  },
+  "modules/order/index.html": {
+    "resources": [
+      "public/css/style.css",
+      "public/css/mui.css",
+      "modules/order/index.js",
+      "public/js/common.js",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/js/mui.js"
+    ],
+    "refer": [
+      "modules/order/detail.html",
+      "modules/account/login.html"
+    ]
+  },
+  "modules/order/detail.html": {
+    "resources": [
+      "public/images/share/share_pyq.png",
+      "public/images/icon-man.png",
+      "modules/order/detail.js",
+      "public/js/mui.previewimage.js",
+      "public/images/share/share_qq.png",
+      "public/images/share/share_weibo.png",
+      "public/css/imageview.css",
+      "public/js/mui.zoom.js",
+      "public/images/share/share_wechat.png",
+      "public/css/mui.min.css",
+      "public/images/share/share_kongjian.png",
+      "public/images/Detail-NodeGray.png",
+      "public/images/Detail-location.png",
+      "public/images/Detail-Phone.png",
+      "public/images/Detail-TimeIcon.png",
+      "public/images/Detail-NodeGreen.png",
+      "public/js/common.js",
+      "public/js/mui.js",
+      "public/css/style.css",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf"
+    ],
+    "refer": [
+      "modules/order/evaluate-his.html",
+      "modules/order/position.html",
+      "modules/order/cancel.html",
+      "modules/account/login.html"
+    ]
+  },
+  "modules/account/login.html": {
+    "resources": [
+      "public/images/icon-account.png",
+      "public/images/driver.png",
+      "public/images/icon-password.png",
+      "public/css/mui.min.css",
+      "public/fonts/mui.ttf",
+      "public/js/md5.js",
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/js/cache.js",
+      "public/js/mui.js",
+      "modules/account/findpwd.html"
+    ],
+    "refer": [
+      "modules/loading/index.html",
+      "modules/main/index.html",
+      "modules/account/reg.html",
+      "modules/account/findpwd.html"
+    ]
+  },
+  "modules/order/evaluate-his.html": {
+    "resources": [
+      "public/css/mui.css",
+      "modules/order/evaluate-his.js"
+    ]
+  },
+  "modules/map/location.html": {
+    "resources": [
+      "modules/map/location.js",
+      "public/css/mui.css",
+      "public/ac/ac.css",
+      "public/leaflet/leaflet.css",
+      "public/images/location.png",
+      "public/leaflet/leaflet.js",
+      "public/leaflet/images/marker-icon.png",
+      "public/ac/ac.js",
+      "public/css/mui.picker.min.css",
+      "public/js/common.js",
+      "public/leaflet/leaflet.location.js",
+      "public/js/mui.picker.min.js",
+      "public/js/cache.js",
+      "public/js/mui.js",
+      "public/js/city.data.js",
+      "public/css/animate.css",
+      "public/js/city.js",
+      "public/leaflet/images/marker.png",
+      "public/css/style.css",
+      "public/fonts/mui.ttf"
+    ]
+  },
+  "modules/main/menu.html": {
+    "resources": [
+      "public/images/icon-service.png",
+      "public/images/icon-setting.png",
+      "public/images/icon-message.png",
+      "public/images/icon-order-normal.png",
+      "public/images/banner-1.png",
+      "public/css/style.css",
+      "public/css/mui.css",
+      "public/js/common.js",
+      "public/js/cache.js",
+      "public/js/mui.js",
+      "public/images/wallet.png",
+      "public/images/star-full.png"
+    ],
+    "refer": [
+      "modules/order/index.html",
+      "modules/options/index.html",
+      "modules/service/index.html",
+      "modules/message/index.html",
+      "modules/personal/message.html",
+      "modules/personal/index.html",
+      "modules/money/index.html"
+    ]
+  },
+  "modules/options/index.html": {
+    "resources": [
+      "public/css/mui.min.css",
+      "modules/options/index.js",
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/js/mui.js"
+    ],
+    "refer": [
+      "modules/account/login.html",
+      "modules/options/deal.html",
+      "modules/options/agreements.html",
+      "modules/options/charge.html",
+      "modules/options/declare.html",
+      "modules/options/JieShao.html",
+      "modules/options/about.html"
+    ]
+  },
+  "modules/service/index.html": {
+    "resources": [
+      "modules/service/index.js",
+      "public/css/mui.min.css",
+      "public/fonts/mui.ttf",
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/js/mui.js"
+    ],
+    "refer": [
+      "modules/service/problem.html",
+      "modules/service/feedback.html"
+    ]
+  },
+  "modules/service/problem.html": {
+    "resources": [
+      "public/js/mui.min.js",
+      "public/css/style.css",
+      "public/css/mui.min.css",
+      "public/fonts/mui.ttf"
+    ],
+    "refer": [
+      "modules/service/answer.html"
+    ]
+  },
+  "modules/map/address.html": {
+    "resources": [
+      "modules/map/address.js",
+      "public/css/mui.min.css"
+    ],
+    "refer": [
+      "modules/account/login.html",
+      "modules/map/location.html"
+    ]
+  },
+  "modules/order/receiver.html": {
+    "resources": [
+      "modules/order/receiver.js",
+      "public/css/style.css",
+      "public/css/mui.min.css",
+      "public/js/mui.js",
+      "public/js/common.js",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf"
+    ],
+    "refer": [
+      "modules/account/login.html"
+    ]
+  },
+  "modules/order/confirm.html": {
+    "resources": [
+      "public/images/list.png",
+      "modules/order/confirm.js",
+      "public/images/icon-wechat.png",
+      "public/images/icon-alipay.png",
+      "public/images/input-select.png",
+      "public/images/input-unselect.png",
+      "public/css/mui.min.css",
+      "public/css/style.css",
+      "public/images/icon-plus.png",
+      "public/js/common.js",
+      "public/js/mui.picker.min.js",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/js/mui.js",
+      "public/css/mui.picker.min.css",
+      "public/images/icon-offline.png",
+      "public/images/attention.png"
+    ],
+    "refer": [
+      "modules/order/receiver.html",
+      "modules/order/detail.html",
+      "modules/account/login.html"
+    ]
+  },
+  "modules/order/position.html": {
+    "resources": [
+      "public/images/position.png",
+      "modules/order/position.js",
+      "public/ac/ac.css",
+      "public/leaflet/leaflet.css",
+      "public/leaflet/leaflet.js",
+      "public/ac/ac.js"
+    ]
+  },
+  "modules/order/cancel.html": {
+    "resources": [
+      "modules/order/cancel.js",
+      "public/images/input-select.png",
+      "public/images/input-unselect.png",
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/css/mui.min.css",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/js/mui.js"
+    ]
+  },
+  "modules/options/deal.html": {
+    "resources": [
+      "public/js/mui.min.js"
+    ]
+  },
+  "modules/account/reg.html": {
+    "resources": [
+      "public/css/user-form.css",
+      "public/js/mui.min.js",
+      "public/images/reg_message_img.png",
+      "public/fonts/mui.ttf",
+      "public/images/banner.jpg",
+      "public/css/style.css",
+      "public/images/icon-account.png",
+      "public/css/mui.css",
+      "public/js/common.js",
+      "public/images/icon-password.png",
+      "public/js/cache.js",
+      "public/images/icon-man.png"
+    ]
+  },
+  "modules/account/findpwd.html": {
+    "resources": [
+      "modules/account/login.html",
+      "public/css/user-form.css",
+      "public/js/mui.min.js",
+      "public/images/reg_message_img.png"
+    ],
+    "refer": [
+      "modules/account/login.html"
+    ]
+  },
+  "modules/options/JieShao.html": {
+    "resources": [
+      "public/images/driver.png",
+      "public/js/mui.min.js",
+      "public/css/style.css",
+      "public/css/mui.min.css",
+      "public/fonts/mui.ttf"
+    ]
+  },
+  "modules/message/index.html": {
+    "resources": [
+      "public/images/icon-del.png",
+      "modules/message/index.js",
+      "public/css/mui.min.css",
+      "public/fonts/mui.ttf"
+    ]
+  },
+  "modules/personal/message.html": {
+    "resources": [
+      "public/js/mui.min.js",
+      "public/css/mui.min.css",
+      "public/css/style.css",
+      "public/fonts/mui.ttf",
+      "public/js/cache.js",
+      "public/images/input-unselect.png",
+      "public/images/input-select.png",
+      "public/images/banner-1.png",
+      "public/js/common.js",
+      "public/js/jquery.min.js"
+    ],
+    "refer": [
+      "modules/personal/userName.html",
+      "modules/account/login.html",
+      "modules/main/index.html",
+      "modules/personal/cropper.html"
+    ]
+  },
+  "modules/personal/userName.html": {
+    "resources": [
+      "public/css/style.css",
+      "public/js/mui.min.js",
+      "public/css/mui.min.css",
+      "public/fonts/mui.ttf",
+      "public/js/common.js",
+      "public/js/cache.js"
+    ]
+  },
+  "modules/personal/cropper.html": {
+    "resources": [
+      "public/js/cropper.min.js",
+      "public/css/cropper.min.css",
+      "public/js/exif.js",
+      "public/js/jquery.min.js",
+      "public/js/mui.min.js",
+      "public/css/mui.min.css"
+    ],
+    "refer": [
+      "modules/personal/message.html"
+    ]
+  },
+  "modules/personal/index.html": {
+    "resources": [
+      "public/images/banner-1.png",
+      "public/js/mui.min.js",
+      "public/css/mui.min.css"
+    ],
+    "refer": [
+      "modules/personal/cropper.html"
+    ]
+  },
+  "modules/money/index.html": {
+    "resources": [
+      "modules/money/index.js",
+      "public/fonts/mui.ttf",
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/css/mui.min.css",
+      "public/js/cache.js",
+      "public/js/mui.js",
+      "public/images/bond.png",
+      "public/images/bank_card.png"
+    ],
+    "refer": [
+      "modules/money/recharge.html",
+      "modules/account/login.html",
+      "modules/money/checked.html"
+    ]
+  },
+  "modules/money/recharge.html": {
+    "resources": [
+      "public/js/mui.min.js",
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/css/mui.min.css",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/images/icon-wechat.png",
+      "public/images/icon-alipay.png",
+      "public/images/input-select.png",
+      "public/images/input-unselect.png"
+    ]
+  },
+  "modules/money/checked.html": {
+    "resources": [
+      "public/css/style.css",
+      "public/js/common.js",
+      "public/css/mui.min.css",
+      "public/js/mui.min.js",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/css/layer.css",
+      "public/js/layer.js"
+    ]
+  },
+  "modules/options/charge.html": {
+    "resources": [
+      "public/js/mui.min.js"
+    ]
+  },
+  "modules/options/agreements.html": {
+    "resources": [
+      "public/js/mui.min.js"
+    ]
+  },
+  "modules/order/price-detail.html": {
+    "resources": [
+      "public/css/style.css",
+      "public/css/mui.css",
+      "public/js/common.js",
+      "public/js/cache.js",
+      "public/fonts/mui.ttf",
+      "public/js/mui.js",
+      "public/images/short-line.png",
+      "public/images/long-line.png"
+    ]
+  }
+}

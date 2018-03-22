@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script src="../../public/js/mui.min.js"></script>
+		<style type="text/css">
+			textarea{
+				margin-top: 10px;
+				width: 95%;
+				position: relative;
+				left: calc((100% - 95%) / 2);
+				padding: 0;
+			}
+			p{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">问题详情</h1>
+		</header>
+		<div class="mui-content">
+			<div id="pro" style="margin-top: 10px;position: relative;left: calc(5% / 2);"></div>
+			<textarea readonly="readonly" id="answers" rows="10"></textarea>
+		</div>
+		<p id="answerA">您好，预约订单按照如下步骤：<br />A、确认起点和目的地。<br />B、填写收货人和货物名称。<br />C、如有特殊货物或者有人跟车，可在备注里填写。<br />D、点击底部“预约”按钮，选择预约时间。<br />E、等待司机接单</p>
+		<p id="answerB">您好，如果您希望联系司机协商接载地点或者讨论有关行程的其他详细信息，请点击左上角菜单 栏，点击“订单记录”，查看进行中的订单，点击电话图标联系。</p>
+		<p id="answerC">您好，在司机装货前，您可以在用户端取消订单：<br />点击客户端左上角菜单 订单记录 > 进行中订 单再点击右上角取消订单，即可取消订单；<br />在司机已装货后，不可以在取消订单。<br />请注意：取消订单前需提前通知司机，如无故恶意取消订单，我们会扣您的信用哦。</p>
+		<p id="answerD">温馨提示：速运侠只提供运输信息服务，发票是承运人的税务责任。</p>
+		
+		<script type="text/javascript">
+			mui.init()
+			var problem = localStorage.getItem('html');
+			pro.innerHTML = problem;
+			var index = localStorage.getItem('index');
+			if(index == 0){
+				answers.value = document.getElementById('answerA').innerText;
+			}else if(index == 1){
+				answers.value = document.getElementById('answerB').innerText;
+			}else if(index == 2){
+				answers.value = document.getElementById('answerC').innerText;
+			}else if(index == 3){
+				answers.value = document.getElementById('answerD').innerText;
+			}
+		</script>
+	</body>
+
+</html>

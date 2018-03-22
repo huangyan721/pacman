@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的消息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		<style>
+			.mui-table-view span {
+				display: block;	
+			}
+			
+			span.name {
+				font-size: 14px;
+			}
+			
+			span.phone {
+				font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">常用联系人</h1>
+		</header>
+		<!--下拉刷新容器-->
+		<div class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul id="list" class="mui-table-view" style="background-color: white;">
+					<!--<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<span class="name">张三</span>
+							<span class="phone color-hint">17705901690</span>
+						</a>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="receiver.js"></script>
+	</body>
+
+</html>

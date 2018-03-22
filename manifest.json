@@ -1,0 +1,860 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5025930F",
+	"name": "货主大人",
+	"version": {
+		"name": "1.0.6",
+		"code": "88"
+	},
+	"description": "",
+	"icons":{ 
+		"72": "icon.png"
+	},
+	"launch_path": "modules/loading/index.html",
+	"developer": {
+		"name": "",
+		"email": "",
+		"url": "http://www.dcloud.io"
+	},
+	"permissions": {
+		"Accelerometer": {
+			"description": "访问加速度感应器"
+		},
+		"Audio": {
+			"description": "访问麦克风"
+		},
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		"Camera": {
+			"description": "访问摄像头"
+		},
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		"Contacts": {
+			"description": "访问系统联系人信息"
+		},
+		"Device": {
+			"description": "访问设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载管理"
+		},
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"File": {
+			"description": "访问本地文件系统"
+		},
+		"Gallery": {
+			"description": "访问系统相册"
+		},
+		"Geolocation": {
+			"description": "访问位置信息"
+		},
+		"Invocation": {
+			"description": "使用Native.js能力"
+		},
+
+		"Orientation": {
+			"description": "访问方向感应器"
+		},
+		"Proximity": {
+			"description": "访问距离感应器"
+		},
+		"Storage": {
+			"description": "管理应用本地数据"
+		},
+
+		"Uploader": {
+			"description": "管理文件上传任务"
+		},
+		"Runtime": {
+			"description": "访问运行期环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络访问"
+		},
+		"Zip": {
+			"description": "文件压缩与解压缩"
+		},
+		"Share": {
+			"description": "管理社交分享插件"
+		},
+		"Barcode": {
+			"description": "管理二维码扫描插件"
+		},
+
+
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"NativeObj": {
+			"description": "原生对象"
+		},
+		"Share": {},
+		"Maps": {},
+		"Payment": {},"Push":{}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,
+			"waiting": false
+		},
+		"runmode": "liberate",
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",
+		"distribute": {
+			"plugins": {"push":{"igexin":{"appid":"VaK4DIHFvd90ZFlZcYFMS","appkey":"aLjNB5lsuQAhnCKupyNKL3","appsecret":"pbW1KJIeRZ7EXgAoNXQtB9"}},
+				"payment": {
+					"alipay": {
+						"description": "阿里支付",
+						"scheme": ""
+					},
+					"weixin": {
+						"description": "微信支付",
+						"appid": "wx14631a9aa7af12de"
+					}
+				},
+				"maps": {
+					"amap": {
+						"appkey_ios": "bf46f6fee6a7b211b9eba97efda7609c",
+						"appkey_android": "de3c1f62665076e49986a78fc8b9ac5f",
+						"description": ""
+					}
+				},
+				"share": {
+					"qq": {
+						"appid": "1106328110",
+						"description": "QQ分享"
+					},
+					"weixin":{
+						"appid":"wx14631a9aa7af12de",
+						"appsecret":"85f31a7ce8ae9cff797e31c87425a677",
+						"description":"可选，微信分享"
+					}
+				}
+			},
+			"apple": {
+				"appid": "com.fjhtxl.pacman",
+				"mobileprovision": "",
+				"password": "",
+				"p12": "",
+				"devices": "universal",
+				"frameworks": [],
+				"plistcmds":[
+				    "Set :NSCameraUsageDescription 货主大人需要您的同意,才能访问您的相机/相册",
+				    "Set :NSPhotoLibraryUsageDescription 货主大人需要您的同意,才能选择/保存图片",
+				    "Set :NSLocationWhenInUseUsageDescription 货主大人需要您的同意,才能获取您的定位信息"
+				]
+			},
+			"google": {
+				"packagename": "com.fjhtxl.pacman",
+				"keystore": "",
+				"password": "",
+				"aliasname": "",
+				"schemes": [
+					"pacman"
+				],
+				"permissions": ["<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"]
+			},
+			"orientation": ["portrait-primary"],
+			"icons": {
+				"ios": {
+					"prerendered": true, 
+					"auto": "", 
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png",
+						"retina": "unpackage/res/icons/114x114.png",
+						"retina7": "unpackage/res/icons/120x120.png",
+						"spotlight-normal": "unpackage/res/icons/29x29.png",
+						"spotlight-retina": "unpackage/res/icons/58x58.png",
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",
+						"settings-normal": "unpackage/res/icons/29x29.png",
+						"settings-retina": "unpackage/res/icons/58x58.png","retina8":"unpackage/res/icons/180x180.png","settings-retina8":"unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png",
+						"retina": "unpackage/res/icons/144x144.png",
+						"normal7": "unpackage/res/icons/76x76.png", 
+						"retina7": "unpackage/res/icons/152x152.png",
+						"spotlight-normal": "unpackage/res/icons/50x50.png",
+						"spotlight-retina": "unpackage/res/icons/100x100.png", 
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",
+						"settings-normal": "unpackage/res/icons/29x29.png",
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", 
+					"ldpi": "unpackage/res/icons/48x48.png", 
+					"hdpi": "unpackage/res/icons/72x72.png", 
+					"xhdpi": "unpackage/res/icons/96x96.png",
+					"xxhdpi": "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "", 
+						"retina35": "C:/Users/Administrator/Desktop/启动图片/iOS/Default@2x.png",
+						"retina40": "C:/Users/Administrator/Desktop/启动图片/iOS/Default-568h@2x.png","retina55":"C:/Users/Administrator/Desktop/启动图片/iOS/Default-736h@3x.png","retina47":"C:/Users/Administrator/Desktop/启动图片/iOS/Default-667h@2x.png","retina55l":"C:/Users/Administrator/Desktop/启动图片/iOS/Default-Landscape-736h@3x.png"
+					},
+					"ipad": {
+						"portrait-retina": "",
+						"landscape": "",
+						"landscape-retina": "",
+						"portrait7": "", 
+						"portrait-retina7": "",
+						"landscape7": "",
+						"landscape-retina7": ""
+					}
+				},
+				"android": {
+					"mdpi": "", 
+					"ldpi": "",
+					"hdpi": "D:/三易/速运侠/启动图片/Android/Default-736h@3x.png", 
+					"xhdpi": "D:/三易/速运侠/启动图片/Android/Default-720h@3x.png",
+					"xxhdpi": "D:/三易/速运侠/启动图片/Android/Default-1080h@3x.png"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"modules/main/index.html": {
+				"resources": [
+					"public/css/mui.css",
+					"public/images/icon-plus.png",
+					"public/images/icon-setting.png",
+					"public/js/common.js",
+					"public/images/icon-order-normal.png",
+					"public/js/mui.js",
+					"public/images/icon-notify.png",
+					"public/css/style.css",
+					"public/images/banner-1.png",
+					"public/images/icon-location.png",
+					"public/images/icon-service.png",
+					"public/images/icon-message.png",
+					"public/fonts/mui.ttf",
+					"modules/main/index.js",
+					"public/images/car.png",
+					"public/js/cache.js",
+					"public/ac/ac.css",
+					"public/ac/ac.js",
+					"public/leaflet/leaflet.location.js",
+					"public/images/sy.png",
+					"public/images/zy.png",
+					"public/images/4ssy.png",
+					"public/images/4szy.png",
+					"public/images/banner.png",
+					"public/css/mui.picker.min.css",
+					"public/js/mui.picker.min.js",
+					"public/images/banner.jpg",
+					"public/images/banner-c.jpg",
+					"public/images/banner-b.jpg",
+					"public/images/banner-d.jpg"
+				],
+				"refer": [
+					"modules/notify/index.html",
+					"modules/message/index.html",
+					"modules/account/login.html",
+					"modules/order/index.html",
+					"modules/order/confirm.html",
+					"modules/options/index.html",
+					"modules/map/location.html",
+					"modules/service/index.html",
+					"modules/main/menu.html",
+					"modules/order/price-detail.html",
+					"modules/map/address.html"
+				],
+				"priority": 0
+			},
+			"modules/notify/index.html": {
+				"resources": [
+					"modules/notify/index.js",
+					"public/css/style.css",
+					"public/css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/message/index.html": {
+				"resources": [
+					"public/images/banner-1.png",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf",
+					"modules/message/index.js",
+					"public/js/mui.js",
+					"public/images/icon-del.png",
+					"public/js/cache.js"
+				],
+				"refer": [
+					"modules/account/login.html"
+				],
+				"priority": 0
+			},
+			"modules/account/login.html": {
+				"resources": [
+					"public/images/icon-account.png",
+					"public/images/icon-password.png",
+					"public/css/mui.min.css",
+					"public/js/md5.js",
+					"modules/account/reg.html",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/js/cache.js",
+					"public/js/mui.js",
+					"public/fonts/mui.ttf",
+					"public/images/driver.png",
+					"modules/account/findpwd.html"
+				],
+				"refer": [
+					"modules/main/index.html",
+					"modules/loading/index.html"
+				],
+				"priority": 0
+			},
+			"modules/order/index.html": {
+				"resources": [
+					"public/css/mui.css",
+					"modules/order/index.js",
+					"public/js/cache.js",
+					"public/js/common.js",
+					"public/js/mui.js",
+					"public/css/style.css",
+					"public/fonts/mui.ttf"
+				],
+				"refer": [
+					"modules/account/login.html",
+					"modules/order/detail.html"
+				],
+				"priority": 0
+			},
+			"modules/order/confirm.html": {
+				"resources": [
+					"public/js/mui.picker.min.js",
+					"public/css/mui.min.css",
+					"modules/order/confirm.js",
+					"public/css/mui.picker.min.css",
+					"public/images/icon-plus.png",
+					"public/js/common.js",
+					"public/js/mui.js",
+					"public/js/cache.js",
+					"public/css/style.css",
+					"public/fonts/mui.ttf",
+					"public/images/icon-wechat.png",
+					"public/images/icon-alipay.png",
+					"public/images/input-select.png",
+					"public/images/input-unselect.png",
+					"public/images/icon-offline.png",
+					"public/images/list.png",
+					"public/images/attention.png"
+				],
+				"refer": [
+					"modules/order/detail.html",
+					"modules/order/receiver.html",
+					"modules/account/login.html"
+				],
+				"priority": 0
+			},
+			"modules/options/index.html": {
+				"resources": [
+					"public/css/mui.min.css",
+					"modules/options/index.js",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/js/mui.js",
+					"public/images/share/share_pyq.png",
+					"public/images/share/share_qq.png",
+					"public/images/share/share_wechat.png"
+				],
+				"refer": [
+					"modules/account/login.html",
+					"modules/options/JieShao.html",
+					"modules/options/share.html",
+					"modules/options/charge.html",
+					"modules/options/agreements.html",
+					"modules/options/deal.html",
+					"modules/options/declare.html",
+					"modules/options/about.html"
+				],
+				"priority": 0
+			},
+			"modules/account/reg.html": {
+				"resources": [
+					"public/css/user-form.css",
+					"public/css/mui.css",
+					"public/js/mui.min.js",
+					"modules/account/login.html",
+					"public/images/reg_message_img.png",
+					"public/css/style.css",
+					"public/images/icon-account.png",
+					"public/js/common.js",
+					"public/images/icon-password.png",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/images/banner.jpg",
+					"public/images/icon-man.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/map/location.html": {
+				"resources": [
+					"modules/map/location.js",
+					"public/leaflet/images/marker-shadow.png",
+					"public/leaflet/images/marker-icon-2x.png",
+					"public/leaflet/leaflet.css",
+					"public/leaflet/leaflet.js",
+					"public/leaflet/images/marker-icon.png",
+					"public/css/mui.css",
+					"public/ac/ac.css",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/ac/ac.js",
+					"public/js/mui.js",
+					"public/fonts/mui.ttf",
+					"public/leaflet/leaflet.location.js",
+					"public/images/location.png",
+					"public/css/mui.picker.min.css",
+					"public/js/mui.picker.min.js",
+					"public/js/cache.js",
+					"public/js/city.data.js",
+					"public/js/city.js",
+					"public/leaflet/images/marker.png",
+					"public/css/animate.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/loading/index.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/css/mui.css",
+					"public/js/common.js",
+					"modules/loading/index.js",
+					"public/js/cache.js",
+					"public/js/mui.js",
+					"public/images/qidong.jpg",
+					"public/images/qidong.jpg",
+					"public/images/logo-icon.png"
+				],
+				"refer": [
+					"modules/main/index.html",
+					"modules/account/login.html"
+				],
+				"priority": 0
+			},
+			"modules/order/detail.html": {
+				"resources": [
+					"modules/order/detail.js",
+					"public/css/mui.min.css",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/js/mui.js",
+					"public/images/star-full.png",
+					"public/images/icon-man.png",
+					"public/images/share/share_pyq.png",
+					"public/images/share/share_qq.png",
+					"public/images/share/share_weibo.png",
+					"public/images/share/share_wechat.png",
+					"public/images/share/share_kongjian.png",
+					"public/js/mui.previewimage.js",
+					"public/js/mui.zoom.js",
+					"public/css/imageview.css",
+					"public/images/nopic.jpg",
+					"public/images/loading.gif",
+					"public/images/loading1.gif",
+					"public/images/Detail-NodeGray.png",
+					"public/images/Detail-NodeGreen.png",
+					"public/images/Detail-location.png",
+					"public/images/Detail-Phone.png",
+					"public/images/Detail-TimeIcon.png"
+				],
+				"refer": [
+					"modules/order/position.html",
+					"modules/order/cancel.html",
+					"modules/order/evaluate-his.html",
+					"modules/account/login.html"
+				],
+				"priority": 0
+			},
+			"modules/service/index.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf",
+					"modules/service/index.js",
+					"public/js/mui.js"
+				],
+				"refer": [
+					"modules/service/problem.html",
+					"modules/service/feedback.html",
+					"modules/service/record.html",
+					"modules/service/complain.html"
+				],
+				"priority": 0
+			},
+			"modules/order/position.html": {
+				"resources": [
+					"public/images/position.png",
+					"public/css/style.css",
+					"public/css/mui.css",
+					"public/ac/ac.css",
+					"public/leaflet/leaflet.css",
+					"modules/order/position.js",
+					"public/leaflet/leaflet.js",
+					"public/ac/ac.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/order/receiver.html": {
+				"resources": [
+					"modules/order/receiver.js",
+					"public/css/style.css",
+					"public/css/mui.min.css",
+					"public/js/common.js",
+					"public/js/cache.js",
+					"public/js/mui.js",
+					"public/fonts/mui.ttf"
+				],
+				"refer": [
+					"modules/account/login.html"
+				],
+				"priority": 0
+			},
+			"modules/order/cancel.html": {
+				"resources": [
+					"public/css/style.css",
+					"modules/order/cancel.js",
+					"public/js/common.js",
+					"public/images/input-select.png",
+					"public/images/input-unselect.png",
+					"public/css/mui.min.css",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/js/mui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/account/findpwd.html": {
+				"resources": [
+					"public/css/user-form.css",
+					"public/css/style.css",
+					"public/css/mui.min.css",
+					"public/images/reg_message_img.png",
+					"public/fonts/mui.ttf",
+					"public/images/icon-account.png",
+					"public/images/icon-password.png",
+					"public/js/mui.min.js",
+					"public/js/common.js",
+					"modules/account/login.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/order/evaluate-his.html": {
+				"resources": [
+					"public/css/mui.css",
+					"modules/order/evaluate-his.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/main/menu.html": {
+				"resources": [
+					"public/images/banner-1.png",
+					"public/images/icon-service.png",
+					"public/images/icon-setting.png",
+					"public/images/icon-message.png",
+					"public/images/icon-order-normal.png",
+					"public/css/mui.css",
+					"public/js/mui.js",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/js/cache.js",
+					"public/images/wallet.png",
+					"public/images/star-full.png"
+				],
+				"refer": [
+					"modules/options/index.html",
+					"modules/order/index.html",
+					"modules/service/index.html",
+					"modules/message/index.html",
+					"modules/personal/message.html",
+					"modules/personal/index.html",
+					"modules/money/index.html"
+				],
+				"priority": 0
+			},
+			"modules/options/JieShao.html": {
+				"resources": [
+					"public/images/driver.png",
+					"public/js/mui.min.js",
+					"public/images/icon-notify.png",
+					"public/css/style.css",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/options/charge.html": {
+				"resources": [
+					"public/images/driver.png",
+					"public/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/options/agreements.html": {
+				"resources": [
+					"public/images/driver.png",
+					"public/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/service/problem.html": {
+				"resources": [
+					"public/js/mui.min.js",
+					"public/css/style.css",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf"
+				],
+				"refer": [
+					"modules/service/answer.html"
+				],
+				"priority": 0
+			},
+			"modules/service/feedback.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/images/icon-service.png",
+					"public/js/mui.min.js",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/service/record.html": {
+				"resources": [
+					"public/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/options/declare.html": {
+				"resources": [
+					"public/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/options/deal.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/js/mui.min.js",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/service/complain.html": {
+				"resources": [
+					"public/js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/map/address.html": {
+				"resources": [
+					"modules/map/address.js",
+					"public/css/mui.min.css"
+				],
+				"refer": [
+					"modules/account/login.html",
+					"modules/map/location.html"
+				],
+				"priority": 0
+			},
+			"modules/personal/message.html": {
+				"resources": [
+					"public/js/mui.min.js",
+					"public/css/mui.min.css",
+					"public/css/style.css",
+					"public/fonts/mui.ttf",
+					"public/js/cache.js",
+					"public/images/input-unselect.png",
+					"public/images/input-select.png",
+					"public/images/banner-1.png",
+					"public/js/common.js",
+					"public/js/jquery.min.js"
+				],
+				"refer": [
+					"modules/personal/userName.html",
+					"modules/account/login.html",
+					"modules/main/index.html",
+					"modules/personal/cropper.html"
+				],
+				"priority": 0
+			},
+			"modules/personal/userName.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/js/mui.min.js",
+					"public/css/mui.min.css",
+					"public/fonts/mui.ttf",
+					"public/js/common.js",
+					"public/js/cache.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/personal/cropper.html": {
+				"resources": [
+					"public/js/cropper.min.js",
+					"public/css/cropper.min.css",
+					"public/js/exif.js",
+					"public/js/jquery.min.js",
+					"public/js/mui.min.js",
+					"public/css/mui.min.css"
+				],
+				"refer": [
+					"modules/personal/message.html"
+				],
+				"priority": 0
+			},
+			"modules/personal/index.html": {
+				"resources": [
+					"public/images/banner-1.png",
+					"public/js/mui.min.js",
+					"public/css/mui.min.css"
+				],
+				"refer": [
+					"modules/personal/cropper.html"
+				],
+				"priority": 0
+			},
+			"modules/money/index.html": {
+				"resources": [
+					"modules/money/index.js",
+					"public/fonts/mui.ttf",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/css/mui.min.css",
+					"public/js/cache.js",
+					"public/js/mui.js",
+					"public/images/bond.png",
+					"public/images/bank_card.png"
+				],
+				"refer": [
+					"modules/money/recharge.html",
+					"modules/account/login.html",
+					"modules/money/checked.html"
+				],
+				"priority": 0
+			},
+			"modules/money/recharge.html": {
+				"resources": [
+					"public/js/mui.min.js",
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/css/mui.min.css",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/images/icon-wechat.png",
+					"public/images/icon-alipay.png",
+					"public/images/input-select.png",
+					"public/images/input-unselect.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/money/checked.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/js/common.js",
+					"public/css/mui.min.css",
+					"public/js/mui.min.js",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/css/layer.css",
+					"public/js/layer.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"modules/order/price-detail.html": {
+				"resources": [
+					"public/css/style.css",
+					"public/css/mui.css",
+					"public/js/common.js",
+					"public/js/cache.js",
+					"public/fonts/mui.ttf",
+					"public/js/mui.js",
+					"public/images/short-line.png",
+					"public/images/long-line.png"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"public/leaflet/images/layers.png",
+				"modules/template/pullrefresh.js",
+				"public/leaflet/leaflet-src.map",
+				"public/leaflet/leaflet-editable-polyline.js",
+				"public/leaflet/leaflet-src.js",
+				"public/leaflet/images/layers-2x.png",
+				"modules/template/index.js",
+				"modules/main/slider.js",
+				"modules/template/index.html",
+				"modules/account/index.html",
+				"public/images/icon-more.png",
+				"modules/template/pullrefresh.html",
+				"public/images/icon-map.png",
+				"modules/account/index.js"
+			]
+		}
+	},
+	"unpackage": [
+		"modules/account/index.html",
+		"modules/account/index.js",
+		"modules/template/index.html",
+		"modules/template/index.js",
+		"modules/template/pullrefresh.html",
+		"modules/template/pullrefresh.js",
+		"public/images/icon-map.png",
+		"public/images/icon-more.png",
+		"public/leaflet/images/layers-2x.png",
+		"public/leaflet/images/layers.png",
+		"public/leaflet/leaflet-editable-polyline.js",
+		"public/leaflet/leaflet-src.js",
+		"public/leaflet/leaflet-src.map"
+	]
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<div class="mui-content mui-fullscreen">
+			<div style="text-align: center; padding-top: 20px;">
+				<div><img style="height:150px" src="../../public/images/driver.png" /></div>
+				<div style="padding-top: 15px; font-size: 16px;">货主大人</div>
+			</div>
+			<div style="margin-top: 20px; width: 70%; margin-left: 15%;">
+				<div class="mui-input-row" style="height: 44px; white-space: nowrap;">
+					<input id="userNames" name="userNo" type="tel" class="mui-input-clear" style="height: 100%; border: 0; padding-right: 34px; padding-left: 64px;margin: 0; background-color: #ececec;" placeholder="请输入手机号码" />
+					<span style="width: 24px; height: 24px; display: inline-block; background: url(../../public/images/icon-account.png); position: absolute; left: 14px; top: 10px; background-size: 24px 24px;"></span>
+					<span style="height: 34px; width: 1px; display: inline-block; position: absolute; left: 48px; top: 5px; background-color: #666666;"></span>
+				</div>
+
+				<!--下拉列表-->
+				<div id="historyBox" style="z-index:99;display:none;position:absolute;width:70%;margin-top: 1px; white-space: nowrap;background: white;border:solid 1px #3e3e3e;">
+					<!--<ul id="ul" class="mui-table-view">-->
+					
+					<!--</ul>-->
+				</div>
+
+				<div class="mui-input-row" style="height: 44px; margin-top: 1px; white-space: nowrap;">
+					<input id="uPwd" name="userPwd" type="password" class="mui-input-clear" style="height: 100%; border: 0; padding-right: 34px; padding-left: 64px;margin: 0; background-color: #ececec;" placeholder="请输入密码">
+					<span style="width: 24px; height: 24px; display: inline-block; background: url(../../public/images/icon-password.png); position: absolute; left: 14px; top: 10px; background-size: 24px 24px;"></span>
+					<span style="height: 34px; width: 1px; display: inline-block; position: absolute; left: 48px; top: 5px; background-color: #666666;"></span>
+				</div>
+
+				<div style="margin-top: 12px;">
+					<button id="reg" style="color:#333;text-align: center;width: 49%; border-radius: 0; border: 2px solid #ffda44; background-color: #FFDA44;display: inline-block;">注册</button>
+					<button id="login" class="mui-pull-right" style="width: 49%; border-radius: 0; border: 2px solid #FFDA44; background-color: #FFDA44;">登录</button>
+				</div>
+				<div style="text-align: right; font-size: 15px; padding-top: 15px; padding-right: 5px;">
+					<a href="findpwd.html">忘记密码</a>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js"></script>
+		<script>
+			window.checkSession = false;
+		</script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		<script type="text/javascript" src="../../public/js/md5.js"></script>
+		<script>
+			var first = 0;
+			mui.back = function() {
+				if(first == 0) {
+					first = new Date().getTime();
+					mui.toast('再按一次退出应用');
+					setTimeout(function() {
+						first = 0;
+					}, 2000);
+					return;
+				}
+				if(new Date().getTime() - first < 2000)
+					plus.runtime.quit();
+			}
+
+			function plusReady() {
+				Cache.loginOut();
+
+//				修改
+				document.getElementById('userNames').addEventListener('focusin', function() {
+					document.getElementById('historyBox').style.display = "block";
+					//添加：动态创建li	
+					var div = document.getElementById('historyBox');
+					div.innerHTML = '';
+					var ul = document.createElement("ul");
+					ul.className = "mui-table-view";
+					div.appendChild(ul);
+					var obj2 = localStorage.getItem('obj');
+					var obj = JSON.parse(obj2);
+					for(var prop in obj) {
+						var html = '<li id="liName" class="mui-table-view-cell mui-li">' + prop + '</li>'
+						ul.innerHTML += html;
+					}					
+					//li内容赋值给input
+					mui('#historyBox').on('tap','.mui-li',function(){
+						var telNumber = this.innerText;
+//						alert(telNumber)
+						document.getElementById('userNames').value = telNumber;
+						document.getElementById('historyBox').style.display = 'none';
+					})		
+				}, false);
+				document.getElementById('userNames').addEventListener('focusout', function() {
+					document.getElementById('historyBox').style.display = "none";
+				}, false);
+
+				var webView = plus.webview.currentWebview();
+				var launch = plus.webview.getLaunchWebview();
+				var viewArr = plus.webview.all();
+				for(var i = 0; i < viewArr.length; i++) {
+					if(webView.id != viewArr[i].id && launch.id != viewArr[i].id) {
+						if(viewArr[i]) { //hide用来处理闪屏问题
+							viewArr[i].hide();
+							viewArr[i].close();
+						}
+					}
+				}
+				login.addEventListener('tap', function() {
+					var params = {
+						"type": Util.APP_TYPE,
+						"uuid": Cache.getUUID()
+					};
+					mui(".mui-input-row input").each(function() {
+						params[this.name] = this.value;
+					});
+					if(!params.userNo || params.userNo == "") {
+						mui.toast("请输入手机号码");
+						return;
+					}
+					if(!params.userPwd || params.userPwd == "") {
+						mui.toast("请输入登录密码");
+						return;
+					}
+					params.userPwd = hex_md5(params.userPwd);
+					Requert.ajax({
+						url: "/open/login.do",
+						data: params,
+						attr: Requert.ATTR_LOAD_MODEL | Requert.ATTR_LOAD_FORCE,
+						callback: function(rs) {
+							if(rs.success) {
+
+//								添加：本地存储用户
+								var uName = document.getElementById('userNames').value;
+								var uPwd = document.getElementById('uPwd').value;
+								if(localStorage.getItem('obj')) {
+									var obj = JSON.parse(localStorage.getItem('obj'));
+								}
+								var obj = {};
+								obj[uName] = uPwd;
+								localStorage.setItem("obj", JSON.stringify(obj));
+
+								rs.data[0].dealRate = rs.data[2].dealRate;
+								rs.data[0].totalOrder = rs.data[2].totalOrder;
+								Cache.setUser(rs.data[0]);
+								/*alert(rs.data[0]);*/
+								Cache.setToken(rs.data[1]);
+								plus.webview.open("/modules/main/index.html", "main/index", {}, {}, 0, function() {
+									launch.loadURL("/modules/loading/index.html");
+									webView && webView.close();
+								});
+							} else
+								mui.toast(rs.message);
+							return true;
+						}
+					});
+				});
+				reg.addEventListener('tap', function() {
+					mui.open('account', 'reg');
+				});
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+		</script>
+	</body>
+
+</html>

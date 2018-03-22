@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script src="../../public/js/mui.min.js"></script>
+		<style type="text/css">
+			img{
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">关于速运侠</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-row" style="text-align: center;margin-top: 20px;">
+				<img src="../../public/images/driver.png" />
+			</div>
+			<div style="text-align: center;">
+				版本号：<span id="banben"></span>
+			</div>
+			<div class="mui-row" style="background-color: white;padding: 3%;font-size: 15px;margin-top: 20px;">
+				<p>&#x3000;&#x3000;一日达共享快速运输有限公司成立宗旨:创建开发速运侠APP平台，依靠速运侠平台拉入个人、的士司机、货车司机、物流运输公司成为速运侠平台里的速运侠（快递员），组成共享的快递物流平台，降低快递物流成本，让同城内的快速一日到达。</p>
+				<p style="color: black;">• 公司口号:共享快递  一日必达。</p>
+			</div>
+			<div class="mui-row" style="height: 1px;padding-left: 3%;background-color: white;padding-right: 3%;">
+				<div style="background-color: #999999;">&nbsp;</div>
+			</div>
+			<div class="mui-row" style="background-color: white;font-size: 14px;padding: 3%;">
+				<div class="mui-row">
+					电话：<a>0591-83858885</a>
+				</div>
+				<div class="mui-row">
+					邮箱：<a>fuzhouyirida@163.com</a>
+				</div>
+				<div class="mui-row">
+					网址：<a>http://www.suyunxia.com</a>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				plus.runtime.getProperty(plus.runtime.appid, function(wgtinfo){
+				    document.getElementById('banben').innerText = wgtinfo.version;
+				});
+			}) 
+		</script>
+	</body>
+
+</html>

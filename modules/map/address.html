@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>常用路线</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/common.js" ></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<!--<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>-->
+		<style>
+			#stored-position li {
+				padding-left: 16px;
+			}
+			
+			#stored-position .item-action {
+				font-size: 0;
+				margin-left: -16px;
+			}
+			
+			#stored-position .select {
+				display: inline-block;
+				width: 50%;
+				text-align: center;
+				height: 36px;
+				background-color: wheat;
+				line-height: 36px;
+				font-size: 14px;
+				color: black;
+			}
+			#stored-position .remove {
+				display: inline-block;
+				width: 50%;
+				text-align: center;
+				background-color: gainsboro;
+				height: 36px;
+				line-height: 36px;
+				font-size: 14px;
+				color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">常用路线管理</h1>
+		</header>
+		<div class="mui-content">
+			<div id="stored-position-container" class="mui-scroll-wrapper" style="top: 44px; bottom: 46px;">
+				<div class="mui-scroll">
+					<ul id="stored-position">
+					</ul>
+				</div>
+			</div>
+			<button id="create-position" style="position: fixed; bottom: 0; border: none; width: 100%; height: 45px; background-color: #f16622; color: white;">添加常用线路</button>
+		</div>
+		
+		<div id="modal2" class="mui-modal" style="z-index: 10001;">
+			<header class="mui-bar mui-bar-nav">
+				<a class="mui-icon mui-icon-close mui-pull-left" href="#modal2"></a>
+				<h1 class="mui-title">添加常用路线</h1>
+			</header>
+			<div class="mui-content" style="position: fixed;top: 44px; bottom: 0; left: 0; right: 0; padding: 0;">
+				<div class="mui-card border" style="padding-left: 16px; font-size: 12px;">
+					<div class="mui-input-row" style="border-bottom: 1px solid #c8c7cc; margin-left: -16px; padding-left: 8px;">
+						<input id="new-position-name" type="text" placeholder="请输入线路名称" style="flex: 1; -webkit-flex: 1; border: none; padding: 6px 8px; height: 44px; margin: 0;" />
+					</div>
+					<form id="location-container" class="mui-input-group">
+						<div class="mui-input-row">
+							<!-- 定位按钮 -->
+							<span class="icon-dot green"></span>
+							<span class="icon-right icon-location"></span>
+							<input type="text" class="color-text" placeholder="出发地" onclick="selectPosition(this)" readonly="readonly" style="padding-right: 40px;" />
+							<input id="start-position" type="hidden" />
+						</div>
+						<div class="mui-input-row">
+							<span class="icon-dot yello"></span>
+							<span id="add-position" class="icon-right icon-add"></span>
+							<input type="text" class="color-text" placeholder="按此输入目的地" onclick="selectPosition(this)" readonly="readonly" style="padding-right: 40px;" />
+							<input type="hidden" />
+						</div>
+					</form>
+				</div>
+				<button id="create-position-commit" style="position: fixed; bottom: 0; border: none; width: 100%; height: 45px; background-color: #f16622; color: white;">确定添加</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="address.js"></script>
+	</body>
+</html>

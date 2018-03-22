@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>确认货单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../public/css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/mui.picker.min.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js"></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+
+		<style>
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 0;
+			}
+			
+			#payment .mui-table-view-cell:after {
+				height: 0;
+			}
+			
+			.mui-table-view .mui-table-view-cell:active {
+				background-color: white;
+			}
+			
+			.busi-id-1 .goods-type,
+			.busi-id-2 .goods-type {
+				display: none;
+			}
+			
+			.busi-id-1 .vehicle-no,
+			.busi-id-1 .vehicle-type {
+				display: block;
+			}
+			
+			.busi-id-3 .goods-type,
+			.busi-id-4 .goods-type {
+				display: block;
+			}
+			
+			
+			.busi-id-3 .vehicle-no,
+			.busi-id-3 .vehicle-type,
+			.busi-id-4 .vehicle-no,
+			.busi-id-4 .vehicle-type,
+			.busi-id-5 .vehicle-no,
+			.busi-id-5 .vehicle-type {
+				display: none;
+			}
+			
+			.mui-content {
+				position: absolute;
+				top: 44px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+			
+			.mui-scroll-wrapper {
+				position: absolute;
+				top: 0;
+				bottom: 116px;
+			}
+			
+			.mui-table-view {
+				font-size: 14px;
+			}
+
+			input {
+				font-size: 14px;
+			}
+			
+			.mui-table-view-cell{
+				padding: 12px 15px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left"></div>
+			<h1 class="mui-title">确认货单</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view background-color-white">
+						<li class="mui-table-view-cell">
+							收货人:
+							<div id="receiver-list" style="position: absolute;background-image: url(../../public/images/list.png);background-size: 20px 20px;background-position: center;right: 0;width: 43px;height: 43px;top: 0;background-repeat: no-repeat;" ></div>
+							<input id="name" class="table-item" type="text" style="margin-right: 30px;" placeholder="请输入收货人姓名" />
+						</li>
+						<li class="mui-table-view-cell">
+							联系方式:
+							<input id="tel" class="table-item" type="tel" placeholder="请输入收货人联系方式" />
+						</li>
+						<li id="appoint-container" class="mui-table-view-cell">
+							预约时间:
+							<input id="appoint-date" class="table-item" type="text" readonly="readonly" placeholder="请选择预约时间" />
+						</li>
+						<!--<li class="mui-table-view-cell">
+							送达时间:
+							<input id="arrive-date" class="table-item" type="text" readonly="readonly" placeholder="请选择送达时间" />
+						</li>-->
+					</ul>
+
+					<ul id="busi-id" class="mui-table-view" style="background-color: white; margin-top: 16px;">
+						<li class="mui-table-view-cell vehicle-type">
+							车辆类型:
+							<input id="car-type" class="table-item" type="text" placeholder="请输入待托运车辆类型(选填)" />
+						</li>
+						<li class="mui-table-view-cell vehicle-no">
+							车牌号码:
+							<input id="car-num" class="table-item" type="text" placeholder="请输入待托运车辆车牌号(选填)" />
+						</li>
+
+						<li class="mui-table-view-cell goods-type">
+							货物名称:
+							<input id="goods-type" class="table-item" type="text" placeholder="请输入货物名称(选填)" />
+						</li>
+						<li class="mui-table-view-cell" style="height: 80px; line-height: 60px;">
+							添加照片:
+							<div style="position: absolute; right: 16px; top: 10px; height: 60px;">
+								<img id="pic-1" style="border: none; width: 60px; height: 60px; display: inline-block; background: url(../../public/images/icon-plus.png) center no-repeat; background-size: 30px 30px; background-color: #E7E7E7;" />
+								<img id="pic-2" style="border: none; width: 60px; height: 60px; display: inline-block; background: url(../../public/images/icon-plus.png) center no-repeat; background-size: 30px 30px; background-color: #E7E7E7;" />
+								<img id="pic-3" style="border: none; width: 60px; height: 60px; display: inline-block; background: url(../../public/images/icon-plus.png) center no-repeat; background-size: 30px 30px; background-color: #E7E7E7;" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							其他要求:
+							<textarea id="remark" style="font-size: 14px;margin-top: 4px;"></textarea>
+						</li>
+					</ul>
+					
+					<!--修改：2018-8-31-->
+					<div id="prompttext" style="color: red;margin-left: 15px;margin-right: 15px;font-size: 14px;margin-top: 20px;display: flex;justify-content: space-around;" class="attention">
+						<div><img src="../../public/images/attention.png" style="width: 20px;height: 20px;"/></div>
+						<div>若货物体积超过500mm*500mm*500mm，建议选择货运。</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="mui-card border" style="text-align: center; padding: 12px; position: absolute;margin: 6px; bottom: 50px; left: 0; right: 0;">
+			<span class="color-hint">价格:</span>
+			<span style="font-size: 22px;">¥<font id="price"></font></span>
+			<span class="color-href" style="display: none;">(价格明细)</span>
+		</div>
+
+		<div id="select-payment" class="background-color-title" style="position: absolute; bottom: 0; width: 100%; height: 44px; text-align: center; line-height: 44px;">
+			下一步
+		</div>
+
+		<div id="payment" class="mui-backdrop" style="display: none;">
+			<div id="payment-panel" style="position: absolute; bottom: 0; left: 0; right: 0;">
+				<div style="width: 100%; background-color: white;">
+					<span style="display: inline-block;text-align: center; width: 100%; font-size: 22px; line-height: 52px;">¥<span id="price-2">88</span></span>
+					<span style="width: 92%; margin-left: 4%; height: 1px; display: block; background-color: #E7E7E7;"></span>
+					<ul id="off-canvas-menu" class="mui-table-view" style="background-color: white;">
+						<li class="mui-table-view-cell mui-radio mui-right">
+							<input name="radio" type="radio" checked="checked"><span class="icon icon-alipay"></span><span style="line-height: 24px; vertical-align: top; font-size: 14px; margin-left: 8px;">支付宝支付</span>
+						</li>
+						<li class="mui-table-view-cell mui-radio mui-right">
+							<input name="radio" type="radio"><span class="icon icon-wechat"></span><span style="line-height: 24px; vertical-align: top; font-size: 14px; margin-left: 8px;">微信支付</span>
+						</li>
+						<li class="mui-table-view-cell mui-radio mui-right">
+							<input name="radio" type="radio"><span class="icon icon-offline"></span><span style="line-height: 24px; vertical-align: top; font-size: 14px; margin-left: 8px;">零钱支付</span>
+						</li>
+					</ul>
+				</div>
+				<div id="pay" class="background-color-title" style="width: 100%; height: 44px; text-align: center; line-height: 44px;">
+					去支付
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="confirm.js"></script>
+
+	</body>
+
+</html>

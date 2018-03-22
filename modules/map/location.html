@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>模板</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../public/css/mui.css" />
+		<link rel="stylesheet" href="../../public/leaflet/leaflet.css" />
+		<link rel="stylesheet" href="../../public/css/mui.picker.min.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<link rel="stylesheet" href="../../public/ac/ac.css" />
+		<link rel="stylesheet" href="../../public/css/animate.css" />
+		<script type="text/javascript" src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js" ></script>
+		<script type="text/javascript" src="../../public/leaflet/leaflet.js"></script>
+		<script type="text/javascript" src="../../public/ac/ac.js" ></script>
+		<script type="text/javascript" src="../../public/leaflet/leaflet.location.js" ></script>
+		<script type="text/javascript" src="../../public/js/mui.picker.min.js" ></script>
+		<script type="text/javascript" src="../../public/js/city.data.js" ></script>
+		<script type="text/javascript" src="../../public/js/city.js" ></script>
+
+		<style>
+			.mui-poppicker {
+				z-index: 10001;
+			}
+			
+			#history-container {
+				border-top: 1px solid #efefef;
+			}
+			
+			#history-container li {
+				display: block;
+				line-height: 40px;
+				height: 40px;
+				padding-left: 8px;
+				border-bottom: 1px solid #EFEFEF;
+			}
+			
+			.center-marker {
+				background-image: url(../../public/leaflet/images/marker.png);
+				width: 32px;
+				height: 32px;
+				background-size: 100% 100%;
+			}
+			#center{
+				z-index: 10000;
+				position: absolute;
+				left: 16px;
+				width: 35px;
+				height: 35px;
+				background-image: url(../../public/images/location.png);
+				background-color: white;
+				background-size: 50%;
+				background-repeat: no-repeat;
+				background-position: center;
+				bottom: 80px;
+				border-radius: 5px;
+				border: 2px solid rgba(0,0,0,0.3);
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: white; padding: 0;">
+			<div class="mui-input-row" style="height: 100%;">
+				<span id="city-spinner" style="position: absolute; left: 44px; font-size: 14px;line-height: 44px; display: inline-block; margin: 0; padding: 0; max-width: 56px; width: 56px; overflow: hidden;" class="mui-icon mui-icon-arrowdown">厦门</span>
+				<input id="address" type="text" class="mui-input-clear" style="height: 100%; border: 0; padding-right: 34px; padding-left: 110px;margin: 0;" placeholder="请输入搜索地址进行搜索" />
+			</div>
+			<div class="mui-icon mui-action-back mui-icon-back mui-pull-left" style="position: absolute; left: 0; top: 0;"></div>
+			<span style="position: absolute; display: inline-block; width: 1px; height: 30px; left: 30px; top: 7px; background-color: #b2b2b2;"></span>
+		</header>
+		<div class="mui-content">
+			<div id="map" style="position: absolute; top: 44px; bottom: 0; left: 0; right: 0;">
+			</div>
+			
+			<div id="center"></div>
+			<div style="z-index: 10000; position: absolute; top: 44px; left: 0px; right: 0px; background-color: white; display: none;">
+				<ul id="history-container">
+				</ul>
+			</div>
+			
+			<div id="ensure-position" class="animated slideInUp" style="position: absolute; bottom: 0; width: 100%; text-align: center; height: 44px; line-height: 44px; background-color: #e04249; z-index: 10000; color: white;">
+				确认地点
+			</div>
+			<!--<div id="ensure-position" style="position: absolute; bottom: 16px; left: 16px; right: 16px; height: 48px; background-color: white; z-index: 1000; border-radius: 5px; display: none;">
+				<span id="select-point" class="mui-pull-right " style="background-color: #e04249; font-weight: 400; color: white; width: 70px; display: inline-block; height: 100%; border-bottom-right-radius: 5px; border-top-right-radius: 5px; line-height: 48px; text-align: center; font-size: 14px;">
+					确认	
+				</span>
+				
+				<div style="font-size: 14px; padding: 8px;">
+					<span id="address-name" style="display: block; line-height: 16px; white-space: nowrap; text-overflow: ellipsis;">[当前]获取中...</span>
+					<span id="address-prov" class="color-hint" style="font-size: 12px;">获取中...</span>
+				</div>
+			</div>-->
+		</div>
+
+		<script type="text/javascript" src="location.js"></script>
+
+	</body>
+
+</html>

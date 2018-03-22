@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../public/css/mui.css" />
+		<link rel="stylesheet" href="../../public/css/style.css" />
+		<script src="../../public/js/mui.js"></script>
+		<script type="text/javascript" src="../../public/js/cache.js"></script>
+		<script type="text/javascript" src="../../public/js/common.js"></script>
+		<style>
+			html,body{
+				background-color: white;
+			}
+			
+			.mui-off-canvas-left {
+				color: #fff;
+			}
+			
+			.title {
+				margin: 35px 15px 10px;
+			}
+			
+			.title+.content {
+				margin: 10px 15px 35px;
+				color: #bbb;
+				text-indent: 1em;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			
+			.mui-control-content {
+				background-color: white;
+				height: 140px;
+				min-height: 140px;
+				max-height: 140px;
+				overflow: hidden;
+			}
+			
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+			
+			.mui-media-body{
+				font-size: 14px;
+			}
+			
+			
+			.user-score div {
+				padding-top: 4px;
+				font-size: 12px;
+				display: inline-block;
+				width: 25%;
+				text-align: center;
+			}
+			
+			.user-score div span {
+				display: block;
+			}
+			
+			.user-score div span:first-child {
+				color: #000000;
+				font-size: 14px;
+			}
+			
+			.user-score div span:last-child {
+				color: #adadad;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable mui-slide-in">
+			<div style="width: 100%; text-align: center; padding-top: 50px;">
+				<img id="headerImg" src="" style="width: 60px; height: 60px; border-radius: 30px;" />
+				<span id="spanLoginBox" class="color-text" style="display: block; font-size: 14px; margin-top: 12px;">请先<span id="login" class="color-href">登录</span>, 专享优质服务</span>
+				<span style="display: block; width: 60%; margin-top: 16px; height: 1px; background-color: #e7e7e7; margin-left: 20%;"></span>
+				<div id="user-score" class="user-score" style="font-size: 0; width: 100%;">
+					<div>
+						<span id="order-total">0</span>
+						<span>总单数</span>
+					</div>
+					<div>
+						<span id="order-percent">100%</span>
+						<span>成单率</span>
+					</div>
+					<div>
+						<span id="order-evaluate"><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i></span>
+						<span>评分</span>
+					</div>
+					<div>
+						<span id="order-score">0</span>
+						<span>积分</span>
+					</div>
+				</div>
+			</div>
+
+			<ul id="off-canvas-menu" class="mui-table-view" style="background-color: white; margin-top: 8px;">
+				<li id="order" class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/icon-order-normal.png" style="width: 20px; height: 20px;">
+						<div class="mui-media-body">
+							我的货单
+						</div>
+					</a>
+				</li>
+				<li id="message" class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/icon-message.png" style="width: 20px; height: 20px;">
+						<div class="mui-media-body">
+							我的消息
+						</div>
+					</a>
+				</li>
+				<!--修改：2017-08-28-->
+				<li id="money" class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/wallet.png" style="width: 20px; height: 20px;">
+						<div class="mui-media-body">
+							我的钱包
+						</div>
+					</a>
+				</li>
+				
+				<li id="service" class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/icon-service.png" style="width: 20px; height: 20px;">
+						<div class="mui-media-body">
+							客服中心
+						</div>
+					</a>
+				</li>
+				<li id="options" class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="../../public/images/icon-setting.png" style="width: 20px; height: 20px;">
+						<div class="mui-media-body">
+							更多选项
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<script>
+			
+			window.addEventListener("pageflowrefresh", function (e) {
+			    location.reload();
+			});
+			
+			mui.init();
+
+			
+			mui('#offCanvasSideScroll').scroll();
+
+			document.getElementById("login").addEventListener('tap', function() {
+				mui.open('account', 'login');
+			});
+			
+
+			document.getElementById("headerImg").addEventListener('tap', function() {
+				closeMenu();
+				mui.open('personal', 'message');
+			});
+			mui.plusReady(function() {
+				
+//				console.log("当前页面URL："+plus.webview.currentWebview().id)
+				
+				var user = Cache.getUser(); 
+				if(user) {
+					spanLoginBox.innerText = user.userName || user.userNo;
+					if(user.image != null) {
+						headerImg.src = user.image;
+					} else {
+						headerImg.src = '../../public/images/banner-1.png';
+					}
+					var score = 5;
+					if(user.scoreNum && user.scoreNum > 0) {
+						score = Math.round(user.socreVal / user.scoreNum);
+					}
+					var iArr = document.getElementById("order-evaluate").querySelectorAll("i");
+					(score > 5) && (score = 5);
+					for(var i = 0; i < score; i++) {
+						iArr[i].innerText = "★";
+					}
+					document.getElementById("order-score").innerHTML = user.integral;
+
+					// TODO 总单数
+					document.getElementById("order-total").innerHTML = user.totalOrder;
+					// TODO 成单率
+					document.getElementById("order-percent").innerHTML = parseFloat(user.dealRate) * 100 + '%';
+
+				} else {
+					document.getElementById("user-score").style.display = 'none';
+				}
+
+			})
+
+			var main = null;
+			mui.plusReady(function() {
+				main = plus.webview.currentWebview().opener();
+				
+			})
+
+			function closeMenu() {
+				mui.fire(main, "menu:swipeleft");
+			}
+
+			mui('#off-canvas-menu').on('tap', '.mui-table-view-cell', function() {
+				closeMenu();
+				var module = this.getAttribute('id');
+				mui.open(module);
+				var wobj = plus.webview.getWebviewById("money/index");
+                mui.fire(wobj,'pageflowrefresh',{
+                    id:'money/index'
+                });
+			});
+		</script>
+	</body>
+
+</html>
